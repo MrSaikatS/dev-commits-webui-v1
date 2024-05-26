@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: "npm"
+          pkg-manager: "bun"
       - run:
           name: Build the app
           command: npm run build
