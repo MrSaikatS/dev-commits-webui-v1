@@ -1,7 +1,9 @@
+import Profile from "@/components/Profile";
+
 const profile = () => {
   return (
     <>
-      <div className="">j</div>
+      <Profile />
     </>
   );
 };
