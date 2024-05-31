@@ -1,7 +1,11 @@
+import LoginForm from "@/components/LoginForm";
+
 const index = () => {
   return (
     <>
-      <div className=''>Hello</div>
+      <div className="flex justify-center items-center h-dvh">
+        <LoginForm />
+      </div>
     </>
   );
 };
