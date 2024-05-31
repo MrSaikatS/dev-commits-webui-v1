@@ -1,10 +1,11 @@
-import LoginForm from "@/components/LoginForm";
+import RegisterUserForm from "@/components/RegisterUserForm";
 
 const index = () => {
   return (
     <>
       <div className="flex justify-center items-center h-dvh">
-        <LoginForm />
+        {/* <LoginForm /> */}
+        <RegisterUserForm />
       </div>
     </>
   );
