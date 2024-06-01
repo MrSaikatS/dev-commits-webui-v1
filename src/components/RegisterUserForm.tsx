@@ -22,7 +22,9 @@ const RegisterUserForm = () => {
 
   const eyeVisible = () => setvisibleIcon(!visibleIcon);
 
-  const registerFunction = () => {};
+  const registerFunction = (formdata: UserRegisterSchmeaType) => {
+    console.log(formdata);
+  };
   return (
     <>
       <form onSubmit={handleSubmit(registerFunction)}>

@@ -2,7 +2,7 @@ import { loginSchema, loginSchemaType } from "@/utlis/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
-import { Eye, EyeOff, Send } from "lucide-react";
+import { Eye, EyeOff, LogIn } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -27,10 +27,14 @@ const LoginForm = () => {
 
       <form onSubmit={handleSubmit(loginfunction)}>
         <div className="space-y-4">
-          <div className="flex flex-row">
-            <span>hello</span>
-            <span>Hello2</span>
+          <div className="font-serif text-3xl font-semibold flex justify-center items-center">
+            Dev Commits
           </div>
+          <div className="flex items-center justify-evenly font-serif p-1 text-center font-semibold text-lg bg-purple-600 rounded-3xl w-28 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-700  cursor-help">
+            <LogIn />
+            Log In
+          </div>
+          <div className="font-serif">Welcome Back, Enter Email & Password</div>
           <Input
             color="primary"
             variant="bordered"
@@ -63,12 +67,16 @@ const LoginForm = () => {
             }
             type={passwordIcon ? "text" : "password"}
           />
+          <div className="font-serif text-center">
+            Do You Have An Account Plz Click Register tab
+          </div>
 
           <Button
-            type="submit"
-            className="bg-blue-600"
-            variant="shadow"
             fullWidth
+            color="secondary"
+            type="submit"
+            className="bg-blue-600 font-semibold"
+            variant="shadow"
             isLoading={isSubmitting}
             isDisabled={isSubmitting}
           >

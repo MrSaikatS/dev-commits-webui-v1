@@ -7,7 +7,7 @@ const index = () => {
   return (
     <>
       <div className="flex justify-center h-dvh">
-        <div className="min-w-[400px] mt-[10%]">
+        <div className="min-w-[500px] mt-[10%]">
           <Tabs size="lg" color="secondary" variant="solid" fullWidth>
             <Tab key="login" title="Login">
               <Card>
