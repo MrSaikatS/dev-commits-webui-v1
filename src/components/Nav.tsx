@@ -12,28 +12,24 @@ import Link from "next/link";
 const Nav = () => {
   return (
     <>
-      <Navbar
-        isBlurred
-        isBordered
-        maxWidth="md">
+      <Navbar isBlurred isBordered maxWidth="md">
         <NavbarBrand className="text-2xl font-semibold">
           <Link href={"/app"}>DEV Commits</Link>
         </NavbarBrand>
 
-        <NavbarContent
-          justify="end"
-          className="sm:hidden">
+        <NavbarContent justify="end" className="sm:hidden">
           <NavbarMenuToggle />
         </NavbarContent>
 
-        <NavbarContent
-          justify="end"
-          className="hidden sm:flex">
+        <NavbarContent justify="end" className="hidden sm:flex">
           <NavbarItem>
             <Link href={"/app"}>Home</Link>
           </NavbarItem>
           <NavbarItem>
             <Link href={"/app/profile"}>Profile</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link href={"/app/createPost"}>Create</Link>
           </NavbarItem>
         </NavbarContent>
 
@@ -43,6 +39,9 @@ const Nav = () => {
           </NavbarMenuItem>
           <NavbarMenuItem>
             <Link href={"/app/profile"}>Profile</Link>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
+            <Link href={"/app/createPost"}>Create</Link>
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>

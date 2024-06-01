@@ -3,8 +3,7 @@ import Profile from "@/components/Profile";
 const profile = () => {
   return (
     <>
-      <div className="grid">
-        <div className=""></div>
+      <div className="">
         <Profile />
       </div>
     </>
