@@ -3,7 +3,7 @@ import CreatePostForm from "@/components/CreatePostForm";
 const createPost = () => {
   return (
     <>
-      <div className="flex justify-center items-center h-[90dvh]">
+      <div className="flex h-[90dvh] items-center justify-center">
         <CreatePostForm />
       </div>
     </>

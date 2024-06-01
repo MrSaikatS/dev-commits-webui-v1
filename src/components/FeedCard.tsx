@@ -6,10 +6,10 @@ import { Heart, MessageCircleMore, Share2 } from "lucide-react";
 const FeedCard = () => {
   return (
     <>
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <Card className="max-w-[300px]">
           <CardBody className="flex flex-col gap-3">
-            <div className="flex gap-3 items-center">
+            <div className="flex items-center gap-3">
               <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
               <div className="font-bold">Ranjana Kumari</div>
             </div>
@@ -32,8 +32,8 @@ const FeedCard = () => {
                 Liked by <span className="font-semibold">rose</span>
               </div>
               <div className="space-x-2">
-                <span className="font-semibold text-sm">Ranjana</span>
-                <span className="text-wrap text-sm text-gray-800">
+                <span className="text-sm font-semibold">Ranjana</span>
+                <span className="text-wrap text-sm">
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Atque ratione soluta cumque sequi, magnam tempora
                 </span>

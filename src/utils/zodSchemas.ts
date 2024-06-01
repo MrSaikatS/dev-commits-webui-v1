@@ -17,4 +17,5 @@ export const userRegisterSchmea = z.object({
 
 export const postSchema = z.object({
   caption: z.string(),
+  postImage: z.string(),
 });
