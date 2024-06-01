@@ -1,4 +1,4 @@
-import { postSchema, postSchemaType } from "@/utlis/postSchema";
+import { postSchema, postSchemaType } from "@/utils/postSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
@@ -14,21 +14,24 @@ const CreatePostForm = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <Card className="">
           <CardBody>
             <form
               action=""
               className="space-y-5"
-              onSubmit={handleSubmit(postFn)}
-            >
+              onSubmit={handleSubmit(postFn)}>
               <Input
                 radius="none"
                 variant="underlined"
                 placeholder="Say something about this post..."
                 {...register("caption")}
               />
-              <Input type="file" radius="none" variant="underlined" />
+              <Input
+                type="file"
+                radius="none"
+                variant="underlined"
+              />
             </form>
           </CardBody>
         </Card>
