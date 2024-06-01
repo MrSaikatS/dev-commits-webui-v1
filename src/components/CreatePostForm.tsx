@@ -1,11 +1,11 @@
-import { postSchema, postSchemaType } from "@/utils/postSchema";
+import { postSchemaType } from "@/utils/types";
+import { postSchema } from "@/utils/zodSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
 import { useForm } from "react-hook-form";
 
 const CreatePostForm = () => {
-  const {} = useForm();
   const { register, handleSubmit } = useForm<postSchemaType>({
     resolver: zodResolver(postSchema),
   });
