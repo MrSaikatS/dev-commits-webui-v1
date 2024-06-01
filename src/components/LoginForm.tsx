@@ -27,6 +27,10 @@ const LoginForm = () => {
 
       <form onSubmit={handleSubmit(loginfunction)}>
         <div className="space-y-4">
+          <div className="flex flex-row">
+            <span>hello</span>
+            <span>Hello2</span>
+          </div>
           <Input
             color="primary"
             variant="bordered"
