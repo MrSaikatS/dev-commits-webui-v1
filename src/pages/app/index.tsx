@@ -7,6 +7,7 @@ const index = () => {
         <FeedCard />
         <FeedCard />
         <FeedCard />
+        <FeedCard />
       </div>
     </>
   );
