@@ -4,30 +4,29 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const LoginForm = () => {
   const {
-    register,
+    // register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    // formState: { errors, isSubmitting },
   } = useForm<loginSchemaType>({
     resolver: zodResolver(userLoginSchema),
   });
 
-  const [passwordIcon, setPasswordIcon] = useState(false);
+  // const [passwordIcon, setPasswordIcon] = useState(false);
 
-  const loginPasswordIcon = () => setPasswordIcon(!passwordIcon);
+  // const loginPasswordIcon = () => setPasswordIcon(!passwordIcon);
 
-  const loginfunction = () => {};
+  const loginFunction = () => {};
 
   return (
     <>
       {/* Login Form Code */}
       <Card>
         <CardBody>
-          <form>
+          <form onSubmit={handleSubmit(loginFunction)}>
             <div className="space-y-5">
               <Input
                 color="primary"
