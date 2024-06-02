@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/system";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
+// import env from "@/utils/env";
 
 const queryClient = new QueryClient();
 
