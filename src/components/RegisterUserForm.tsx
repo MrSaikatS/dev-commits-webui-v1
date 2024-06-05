@@ -4,7 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
-import { useForm } from "react-hook-form";
+import { Network } from "lucide-react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 const RegisterUserForm = () => {
   const {
@@ -15,54 +16,82 @@ const RegisterUserForm = () => {
     resolver: zodResolver(userRegisterSchmea),
   });
 
-  const userRegisterFunction = () => {};
+  const userRegisterFunction: SubmitHandler<UserRegisterSchmeaType> = (
+    data,
+  ) => {
+    console.log(data);
+  };
 
   return (
     <>
       <Card>
         <CardBody>
+          <div className="flex items-center gap-3">
+            <div className="rounded-full bg-slate-100 p-4 text-blue-600">
+              <Network />
+            </div>
+            <div className="flex flex-col">
+              <p className="text-xl font-bold uppercase">Dev Commits</p>
+              <p className="text-sm">Post anything freely</p>
+            </div>
+          </div>
+          <div className="my-8 space-y-2">
+            <p className="text-3xl font-bold">Create account</p>
+            <p className="w-[80%]">
+              Welcome user, enter your details to create your account.
+            </p>
+          </div>
           <form onSubmit={handleSubmit(userRegisterFunction)}>
             <div className="space-y-5">
               <Input
-                color="secondary"
-                variant="bordered"
-                label="First Name"
                 {...register("first_name")}
+                color="primary"
+                type="text"
+                variant="faded"
+                label="First Name"
+                size="sm"
+                isInvalid={errors.first_name ? true : false}
                 errorMessage={errors.first_name?.message}
-                isInvalid={errors.first_name?.message ? true : false}
               />
               <Input
-                color="secondary"
-                variant="bordered"
-                label="Last Name"
                 {...register("last_name")}
+                color="primary"
+                type="text"
+                variant="faded"
+                label="Last Name"
+                size="sm"
+                isInvalid={errors.last_name ? true : false}
                 errorMessage={errors.last_name?.message}
-                isInvalid={errors.last_name?.message ? true : false}
               />
-
               <Input
-                color="secondary"
-                variant="bordered"
-                label="Email"
                 {...register("email")}
+                color="primary"
+                type="email"
+                variant="faded"
+                label="Email"
+                size="sm"
+                isInvalid={errors.email ? true : false}
                 errorMessage={errors.email?.message}
-                isInvalid={errors.email?.message ? true : false}
               />
               <Input
-                color="secondary"
-                variant="bordered"
-                label="Password"
                 {...register("password")}
+                color="primary"
+                type="password"
+                variant="faded"
+                label="Password"
+                size="sm"
+                isInvalid={errors.password ? true : false}
                 errorMessage={errors.password?.message}
-                isInvalid={errors.password?.message ? true : false}
               />
               <Button
-                fullWidth
-                color="secondary"
-                variant="shadow"
+                isLoading={isSubmitting}
                 type="submit"
-                isLoading={isSubmitting}>
-                {isSubmitting ? "" : "Submit"}
+                size="lg"
+                color="primary"
+                variant="solid"
+                radius="sm"
+                fullWidth>
+                Create account
               </Button>
             </div>
           </form>

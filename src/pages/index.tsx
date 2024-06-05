@@ -5,11 +5,11 @@ import { Tab, Tabs } from "@nextui-org/tabs";
 const index = () => {
   return (
     <>
-      <div className="flex h-dvh justify-center">
-        <div className="mt-[17%] min-w-[300px]">
+      <div className="flex h-dvh items-center justify-center">
+        <div className="h-[670px] min-w-[25%]">
           <Tabs
             size="lg"
-            color="secondary"
+            color="primary"
             variant="solid"
             fullWidth>
             <Tab
