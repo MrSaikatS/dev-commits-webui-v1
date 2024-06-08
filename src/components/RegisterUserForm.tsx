@@ -4,10 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
-import { Network } from "lucide-react";
+import { Eye, EyeOff, Network } from "lucide-react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 const RegisterUserForm = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -76,12 +79,24 @@ const RegisterUserForm = () => {
               <Input
                 {...register("password")}
                 color="primary"
-                type="password"
                 variant="faded"
                 label="Password"
                 size="sm"
                 isInvalid={errors.password ? true : false}
                 errorMessage={errors.password?.message}
+                endContent={
+                  <button
+                    className="focus:outline-none"
+                    type="button"
+                    onClick={() => setPasswordVisible(!passwordVisible)}>
+                    {passwordVisible ? (
+                      <Eye className="stroke-blue-500" />
+                    ) : (
+                      <EyeOff className="stroke-blue-500" />
+                    )}
+                  </button>
+                }
+                type={passwordVisible ? "text" : "password"}
               />
               <Button
                 isLoading={isSubmitting}

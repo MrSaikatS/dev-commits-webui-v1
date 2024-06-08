@@ -4,10 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
-import { Network } from "lucide-react";
+import { Eye, EyeOff, Network } from "lucide-react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 const LoginForm = () => {
+  const [loginVisibleicon, setLoginVisibleIcon] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -55,12 +58,24 @@ const LoginForm = () => {
               <Input
                 {...register("password")}
                 color="primary"
-                type="password"
                 variant="faded"
                 label="Password"
                 size="sm"
                 isInvalid={errors.password ? true : false}
                 errorMessage={errors.password?.message}
+                endContent={
+                  <button
+                    className="focus:outline-none"
+                    type="button"
+                    onClick={() => setLoginVisibleIcon(!loginVisibleicon)}>
+                    {loginVisibleicon ? (
+                      <Eye className="stroke-blue-600" />
+                    ) : (
+                      <EyeOff className="stroke-blue-600" />
+                    )}
+                  </button>
+                }
+                type={loginVisibleicon ? "text" : "password"}
               />
               <Button
                 isLoading={isSubmitting}

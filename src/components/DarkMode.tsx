@@ -18,6 +18,7 @@ const DarkMode = () => {
     <>
       <Button
         variant="light"
+        isIconOnly
         size="sm"
         onPress={() => setDarkMode(!darkMode)}>
         {darkMode ? <MoonIcon /> : <SunIcon />}
