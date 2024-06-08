@@ -42,7 +42,7 @@ const CreatePostForm = () => {
   };
   return (
     <>
-      <div className="flex w-full items-center justify-center sm:h-2/3 sm:w-1/2">
+      <div className="mx-auto flex w-[320px] items-center justify-center sm:w-full">
         <Card className="h-full w-full">
           <CardBody className="h-full">
             <div className="flex h-[290px] flex-col items-center">

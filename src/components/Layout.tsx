@@ -10,7 +10,7 @@ const Layout = ({ children }: LayoutPropType) => {
     <>
       <Header />
 
-      <main>{children}</main>
+      <main className="mx-auto max-w-screen-md p-6">{children}</main>
     </>
   );
 };

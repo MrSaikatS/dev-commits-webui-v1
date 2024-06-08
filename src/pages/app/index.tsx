@@ -1,4 +1,6 @@
+import CreatePostForm from "@/components/CreatePostForm";
 import DisplayPostcard from "@/components/DisplayPostcard";
+import { Button } from "@nextui-org/button";
 // import FeedCard from "@/components/FeedCard";
 
 const index = () => {
@@ -11,7 +13,8 @@ const index = () => {
         <FeedCard />
       </div> */}
 
-      <div className="mx-auto w-full space-x-3 sm:w-[45%]">
+      <div className="mx-auto mt-3 space-y-4 p-5">
+        <CreatePostForm />
         <DisplayPostcard />
       </div>
     </>
