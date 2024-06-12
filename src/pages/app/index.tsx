@@ -1,6 +1,6 @@
 import CreatePostForm from "@/components/CreatePostForm";
 import DisplayPostcard from "@/components/DisplayPostcard";
-import { Button } from "@nextui-org/button";
+
 // import FeedCard from "@/components/FeedCard";
 
 const index = () => {
