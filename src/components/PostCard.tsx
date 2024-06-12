@@ -11,7 +11,7 @@ import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { useAtom } from "jotai";
 import { Image } from "@nextui-org/image";
 import { Button } from "@nextui-org/button";
-import DeletePostModal from "./modals/DeletePostModal";
+
 import { Heart } from "lucide-react";
 
 const PostCard = () => {
