@@ -1,26 +1,29 @@
-import { accounteditschemaType } from "@/utils/types";
-import { accounteditschema } from "@/utils/zodSchemas";
+import { accountEditSchemaType } from "@/utils/types";
+import { accountEditSchema } from "@/utils/zodSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 import { useForm } from "react-hook-form";
 
 const AccountEdit = () => {
+  const [loginVisibleicon, setLoginVisibleIcon] = useState(false);
   // validation Code2
 
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
-  } = useForm<accounteditschemaType>({
-    resolver: zodResolver(accounteditschema),
+  } = useForm<accountEditSchemaType>({
+    resolver: zodResolver(accountEditSchema),
   });
 
   // main function account edit
 
-  const accountEditFunc = (accounteditdata: accounteditschemaType) => {
+  const accountEditFunc = (accounteditdata: accountEditSchemaType) => {
     console.log(accounteditdata);
   };
 
@@ -72,7 +75,21 @@ const AccountEdit = () => {
               {...register("password")}
               isInvalid={!!errors.password?.message}
               errorMessage={errors.password?.message}
+              endContent={
+                <button
+                  className="focus:outline-none"
+                  type="button"
+                  onClick={() => setLoginVisibleIcon(!loginVisibleicon)}>
+                  {loginVisibleicon ? (
+                    <Eye className="stroke-blue-600" />
+                  ) : (
+                    <EyeOff className="stroke-blue-600" />
+                  )}
+                </button>
+              }
+              type={loginVisibleicon ? "text" : "password"}
             />
+
             <Button
               type="submit"
               color="primary"
