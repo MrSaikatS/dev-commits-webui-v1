@@ -31,7 +31,7 @@ const PostCard = () => {
                 alt="profile_img"
                 className="aspect-square p-1"
               />
-              <p className="">Priyangsu Banik</p>
+              <p className="">sourav</p>
             </div>
 
             <div className="">

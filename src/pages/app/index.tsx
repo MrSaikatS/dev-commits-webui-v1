@@ -1,8 +1,6 @@
 import CreatePostForm from "@/components/CreatePostForm";
 import DisplayPostcard from "@/components/DisplayPostcard";
 
-// import FeedCard from "@/components/FeedCard";
-
 const index = () => {
   return (
     <>

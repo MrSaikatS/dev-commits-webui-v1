@@ -1,15 +1,17 @@
-import AccountEdit from "@/components/AccountEdit";
+import DisplayProfileCard from "@/components/DisplayProfileCard";
 import Profile from "@/components/Profile";
-
-import ProfileEdit from "@/components/ProfileEdit";
+import ProfileLoading from "@/components/ProfileLoading";
 
 const profile = () => {
   return (
     <>
-      <div className="">
-        <Profile />
-        <AccountEdit />
-        <ProfileEdit />
+      <div className="mx-auto mt-3 space-y-4 p-5">
+        <div className="">
+          <Profile />
+          <ProfileLoading />
+        </div>
+
+        <DisplayProfileCard />
       </div>
     </>
   );

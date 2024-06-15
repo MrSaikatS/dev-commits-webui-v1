@@ -1,8 +1,7 @@
 import { z } from "zod";
 import {
-  accountEditSchema,
   postSchema,
-  profileEditSchema,
+  updateProfileSchema,
   userLoginSchema,
   userRegisterSchmea,
 } from "./zodSchemas";
@@ -13,6 +12,4 @@ export type postSchemaType = z.infer<typeof postSchema>;
 
 export type UserRegisterSchmeaType = z.infer<typeof userRegisterSchmea>;
 
-export type accountEditSchemaType = z.infer<typeof accountEditSchema>;
-
-export type profileEditSchemaType = z.infer<typeof profileEditSchema>;
+export type UpdateProfileSchemaType = z.infer<typeof updateProfileSchema>;

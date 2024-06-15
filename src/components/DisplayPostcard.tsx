@@ -1,4 +1,5 @@
 import PostCard from "./PostCard";
+import PostCardSkeleton from "./PostCardSkeleton";
 
 const DisplayPostcard = () => {
   return (
@@ -7,6 +8,7 @@ const DisplayPostcard = () => {
         <PostCard />
         <PostCard />
         <PostCard />
+        <PostCardSkeleton />
       </div>
     </>
   );

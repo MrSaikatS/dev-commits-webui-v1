@@ -39,9 +39,6 @@ const Nav = () => {
           <NavbarItem>
             <Link href={"/app/profile"}>Profile</Link>
           </NavbarItem>
-          <NavbarItem>
-            <Link href={"/app/createPost"}>Create</Link>
-          </NavbarItem>
         </NavbarContent>
 
         <NavbarMenu className="items-center">
@@ -53,9 +50,6 @@ const Nav = () => {
           </NavbarMenuItem>
           <NavbarMenuItem>
             <Link href={"/app/profile"}>Profile</Link>
-          </NavbarMenuItem>
-          <NavbarMenuItem>
-            <Link href={"/app/createPost"}>Create</Link>
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
