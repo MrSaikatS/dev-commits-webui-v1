@@ -9,6 +9,7 @@ import {
 } from "@nextui-org/navbar";
 import Link from "next/link";
 import DarkMode from "./DarkMode";
+import { LogOut } from "lucide-react";
 
 const Nav = () => {
   return (
@@ -39,6 +40,9 @@ const Nav = () => {
           <NavbarItem>
             <Link href={"/app/profile"}>Profile</Link>
           </NavbarItem>
+          <NavbarItem>
+            <Link href={"/"}>Logout</Link>
+          </NavbarItem>
         </NavbarContent>
 
         <NavbarMenu className="items-center">
@@ -49,7 +53,14 @@ const Nav = () => {
             <Link href={"/app"}>Home</Link>
           </NavbarMenuItem>
           <NavbarMenuItem>
-            <Link href={"/app/profile"}>Profile</Link>
+            <Link href={"/"}>
+              <LogOut />
+            </Link>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
+            <Link href={"/app/profile"}>
+              <LogOut />
+            </Link>
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>

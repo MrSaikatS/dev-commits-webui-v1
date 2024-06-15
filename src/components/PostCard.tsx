@@ -35,12 +35,6 @@ const PostCard = () => {
             </div>
 
             <div className="">
-              <Button
-                // onPress={onOpen}
-                variant="light"
-                color="danger">
-                Delete Post
-              </Button>
               <div className="flex w-full items-center gap-2">
                 <button
                   className="focus:outline-none"

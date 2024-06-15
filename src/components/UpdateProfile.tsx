@@ -43,6 +43,7 @@ const UpdateProfile = () => {
 
   return (
     <>
+      <div className="text-center text-3xl font-bold">Profile edit</div>
       <Card>
         <CardBody>
           <div className="flex h-[150px] w-full items-center justify-center rounded-full">
