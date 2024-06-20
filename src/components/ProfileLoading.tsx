@@ -1,5 +1,5 @@
-import { Avatar } from "@nextui-org/avatar";
 import { Card, CardBody } from "@nextui-org/card";
+import { Image } from "@nextui-org/image";
 import { Skeleton } from "@nextui-org/skeleton";
 
 const ProfileLoading = () => {
@@ -10,9 +10,8 @@ const ProfileLoading = () => {
         shadow="sm"
         className="border-none">
         <CardBody className="mb-2 mt-2 flex items-center justify-center gap-4">
-          <Skeleton className="rounded-lg">
-            <Avatar
-              size="lg"
+          <Skeleton className="rounded-full">
+            <Image
               src="/MYSELF2.jpg"
               className="h-32 w-32"
             />

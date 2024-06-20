@@ -1,4 +1,4 @@
-import { Avatar } from "@nextui-org/avatar";
+import { Image } from "@nextui-org/image";
 import { Card, CardBody } from "@nextui-org/card";
 
 const Profile = () => {
@@ -9,10 +9,9 @@ const Profile = () => {
         shadow="sm"
         className="border-none">
         <CardBody className="mb-2 mt-2 flex items-center justify-center gap-4 rounded-lg">
-          <Avatar
-            size="lg"
+          <Image
             src="/MYSELF2.jpg"
-            className="h-32 w-32"
+            className="h-32 w-32 rounded-full"
           />
 
           <p className="text-2xl font-bold">Priyangsu Banik</p>

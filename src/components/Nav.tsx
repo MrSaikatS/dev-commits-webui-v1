@@ -9,7 +9,8 @@ import {
 } from "@nextui-org/navbar";
 import Link from "next/link";
 import DarkMode from "./DarkMode";
-import { LogOut } from "lucide-react";
+
+import UserNav from "./UserNav";
 
 const Nav = () => {
   return (
@@ -32,35 +33,32 @@ const Nav = () => {
           justify="end"
           className="hidden sm:flex">
           <NavbarItem>
-            <DarkMode />
-          </NavbarItem>
-          <NavbarItem>
             <Link href={"/app"}>Home</Link>
           </NavbarItem>
           <NavbarItem>
             <Link href={"/app/profile"}>Profile</Link>
           </NavbarItem>
           <NavbarItem>
-            <Link href={"/"}>Logout</Link>
+            <UserNav />
+          </NavbarItem>
+          <NavbarItem>
+            <DarkMode />
           </NavbarItem>
         </NavbarContent>
 
         <NavbarMenu className="items-center">
           <NavbarMenuItem>
-            <DarkMode />
-          </NavbarMenuItem>
-          <NavbarMenuItem>
             <Link href={"/app"}>Home</Link>
           </NavbarMenuItem>
           <NavbarMenuItem>
-            <Link href={"/"}>
-              <LogOut />
-            </Link>
+            <Link href={"/app/profile"}>Profile</Link>
           </NavbarMenuItem>
           <NavbarMenuItem>
-            <Link href={"/app/profile"}>
-              <LogOut />
-            </Link>
+            <UserNav />
+          </NavbarMenuItem>
+
+          <NavbarMenuItem>
+            <DarkMode />
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>

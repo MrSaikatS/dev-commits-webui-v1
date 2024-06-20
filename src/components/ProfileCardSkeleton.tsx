@@ -6,34 +6,35 @@ import { Skeleton } from "@nextui-org/skeleton";
 const ProfileCardSkeleton = () => {
   return (
     <>
-      <Card className="w-[320px]">
+      <Card className="h-full w-[320px]">
         <CardHeader className="items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Skeleton className="rounded-lg">
+          <div className="flex items-center justify-between gap-2">
+            <Skeleton className="rounded-full">
               <Image
                 src={"/MYSELF2.jpg"}
                 width={60}
                 height={60}
                 radius="full"
+                // loading="lazy"
                 alt="profile_img"
                 className="aspect-square p-1"
               />
             </Skeleton>
 
-            <span className="">
-              <Skeleton className="rounded-lg">Priyangsu Banik</Skeleton>
-            </span>
+            {/* <span className="flex items-start"> */}
+            <Skeleton className="h-8 w-24 rounded-lg"></Skeleton>
+            {/* </span> */}
           </div>
 
-          <div className="flex w-full items-center gap-2">
-            <Button
-              isLoading
-              // onPress={onOpen}
-              variant="light"
-              color="danger">
-              Delete Post
-            </Button>
-          </div>
+          {/* <div className="flex w-full items-end justify-end gap-2"> */}
+          <Button
+            isLoading
+            // onPress={onOpen}
+            variant="light"
+            color="danger">
+            Delete Post
+          </Button>
+          {/* </div> */}
         </CardHeader>
 
         <CardBody>

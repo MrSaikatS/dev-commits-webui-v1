@@ -6,7 +6,8 @@ import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
 import { Eye, EyeOff, Network } from "lucide-react";
 import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const RegisterUserForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -19,10 +20,11 @@ const RegisterUserForm = () => {
     resolver: zodResolver(userRegisterSchmea),
   });
 
-  const userRegisterFunction: SubmitHandler<UserRegisterSchmeaType> = (
-    data,
-  ) => {
-    console.log(data);
+  const userRegisterFunction = async (fdata: UserRegisterSchmeaType) => {
+    await new Promise<void>((r) => setTimeout(r, 2000));
+
+    console.log(fdata);
+    toast.success("User Registration Suucessfully");
   };
 
   return (
