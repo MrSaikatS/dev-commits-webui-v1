@@ -10,7 +10,6 @@ import { likeatom } from "@/utils/atoms/darkAtoms";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { useAtom } from "jotai";
 import { Image } from "@nextui-org/image";
-import { Button } from "@nextui-org/button";
 
 import { Heart } from "lucide-react";
 
