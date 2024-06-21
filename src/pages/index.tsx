@@ -24,10 +24,10 @@ const index = () => {
               <RegisterUserForm />
             </Tab>
           </Tabs>
-          <div className="mt-8 flex items-center justify-center gap-3">
+          {/* <div className="mt-8 flex items-center justify-center gap-3">
             <span>DarkMode Button</span>
             <DarkMode />
-          </div>
+          </div> */}
         </div>
       </div>
     </>
