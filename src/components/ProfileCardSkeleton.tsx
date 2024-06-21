@@ -3,7 +3,6 @@ import { Card, CardHeader, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Skeleton } from "@nextui-org/skeleton";
 import { Trash2 } from "lucide-react";
-import { Divider } from "@nextui-org/divider";
 
 const ProfileCardSkeleton = () => {
   return (
