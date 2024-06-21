@@ -1,4 +1,3 @@
-import DarkMode from "@/components/DarkMode";
 import LoginForm from "@/components/LoginForm";
 import RegisterUserForm from "@/components/RegisterUserForm";
 import { Tab, Tabs } from "@nextui-org/tabs";
