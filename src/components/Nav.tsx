@@ -11,6 +11,8 @@ import Link from "next/link";
 import DarkMode from "./DarkMode";
 
 import UserNav from "./UserNav";
+import Fab from "./Fab";
+// import Fab from "./Fab";
 
 const Nav = () => {
   return (
@@ -62,6 +64,7 @@ const Nav = () => {
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
+      <Fab />
     </>
   );
 };

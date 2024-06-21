@@ -1,14 +1,16 @@
 import { UpdateProfileSchemaType } from "@/utils/types";
 import { updateProfileSchema } from "@/utils/zodSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Avatar } from "@nextui-org/avatar";
+import { Image } from "@nextui-org/image";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
-import { Rss } from "lucide-react";
+import { Rss, UserCheck } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useFilePicker } from "use-file-picker";
+import { Tooltip } from "@nextui-org/tooltip";
+import { toast } from "sonner";
 
 const UpdateProfile = () => {
   // file picker code
@@ -37,41 +39,54 @@ const UpdateProfile = () => {
 
   //   form data backend
 
-  const updateProfileFunc = (infodata: UpdateProfileSchemaType) => {
+  const updateProfileFunc = async (infodata: UpdateProfileSchemaType) => {
+    await new Promise<void>((r) => setTimeout(r, 2000));
+    console.log(infodata);
+    toast.info("User Profile Edit Successfully.", {
+      icon: (
+        <UserCheck
+          size={20}
+          color="blue"
+        />
+      ),
+    });
     console.log(infodata);
   };
 
   return (
     <>
-      <div className="text-center text-3xl font-bold">Profile edit</div>
+      <div className="mb-4 text-center text-3xl font-bold">Profile Edit</div>
       <Card>
         <CardBody>
           <div className="flex h-[150px] w-full items-center justify-center rounded-full">
             <div className="grid w-[150px] place-items-center">
               <div className="relative">
                 {filesContent.map((file, index) => (
-                  <Avatar
-                    size="lg"
+                  <Image
                     src={file.content}
                     key={index}
                     className="aspect-square h-32 w-32 rounded-full"
                   />
                 ))}
                 {!selectedImage && (
-                  <Avatar
-                    size="lg"
+                  <Image
                     className="aspect-square h-32 w-32 rounded-full"
                     src="/blank.jpg"
                   />
                 )}
-
-                <Rss
-                  color="black"
-                  size={30}
-                  onClick={openFilePicker}
-                  strokeWidth={3}
-                  className="absolute left-24 top-24 z-10 rounded-full bg-cyan-300 p-1"
-                />
+                <Tooltip
+                  content="Upload Profile Image"
+                  color="primary"
+                  shadow="md"
+                  radius="lg"
+                  showArrow={true}>
+                  <Rss
+                    color="Black"
+                    size={30}
+                    onClick={openFilePicker}
+                    className="absolute left-24 top-24 z-10 rounded-full bg-sky-400 p-1"
+                  />
+                </Tooltip>
               </div>
             </div>
           </div>

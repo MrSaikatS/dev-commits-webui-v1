@@ -1,3 +1,4 @@
+import DarkMode from "@/components/DarkMode";
 import LoginForm from "@/components/LoginForm";
 import RegisterUserForm from "@/components/RegisterUserForm";
 import { Tab, Tabs } from "@nextui-org/tabs";
@@ -5,7 +6,7 @@ import { Tab, Tabs } from "@nextui-org/tabs";
 const index = () => {
   return (
     <>
-      <div className="flex h-dvh items-center justify-center">
+      <div className="mt-12 flex h-dvh items-center justify-center">
         <div className="h-[670px] min-w-[25%]">
           <Tabs
             size="lg"
@@ -23,6 +24,10 @@ const index = () => {
               <RegisterUserForm />
             </Tab>
           </Tabs>
+          <div className="mt-8 flex items-center justify-center gap-3">
+            <span>DarkMode Button</span>
+            <DarkMode />
+          </div>
         </div>
       </div>
     </>

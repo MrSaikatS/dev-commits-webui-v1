@@ -1,8 +1,23 @@
 import { Button } from "@nextui-org/button";
 import { Card, CardHeader, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
+import { Tooltip } from "@nextui-org/tooltip";
+import { SquareArrowUpRight, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 const ProfileCard = () => {
+  const UserPostDelete = () => {
+    console.log("fghjghfhbio");
+    toast.info("Post Delete Suessfully.", {
+      icon: (
+        <SquareArrowUpRight
+          size={20}
+          color="blue"
+        />
+      ),
+    });
+  };
+
   return (
     <>
       <Card className="w-[320px]">
@@ -19,14 +34,20 @@ const ProfileCard = () => {
             <p className="">Priyangsu Banik</p>
           </div>
 
-          <div className="">
+          <Tooltip
+            content="Delete Post"
+            color="primary"
+            shadow="md"
+            radius="lg"
+            showArrow={true}>
             <Button
-              // onPress={onOpen}
+              onPress={UserPostDelete}
               variant="light"
-              color="danger">
-              Delete Post
+              color="primary"
+              isIconOnly>
+              <Trash2 color="blue" />
             </Button>
-          </div>
+          </Tooltip>
         </CardHeader>
         <CardBody>
           <div className="flex flex-col gap-4">
@@ -35,6 +56,7 @@ const ProfileCard = () => {
               aliquam eum quia aspernatur reprehenderit provident rem non sunt
               expedita ducimus.
             </p>
+
             <Image
               src={"/mercedes.jpg"}
               width={300}

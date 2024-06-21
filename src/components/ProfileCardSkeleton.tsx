@@ -2,6 +2,8 @@ import { Button } from "@nextui-org/button";
 import { Card, CardHeader, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Skeleton } from "@nextui-org/skeleton";
+import { Trash2 } from "lucide-react";
+import { Divider } from "@nextui-org/divider";
 
 const ProfileCardSkeleton = () => {
   return (
@@ -27,13 +29,14 @@ const ProfileCardSkeleton = () => {
           </div>
 
           {/* <div className="flex w-full items-end justify-end gap-2"> */}
-          <Button
-            isLoading
-            // onPress={onOpen}
-            variant="light"
-            color="danger">
-            Delete Post
-          </Button>
+          <Skeleton className="rounded-lg">
+            <Button
+              variant="light"
+              color="primary"
+              isIconOnly>
+              <Trash2 color="blue" />
+            </Button>
+          </Skeleton>
           {/* </div> */}
         </CardHeader>
 
@@ -41,9 +44,11 @@ const ProfileCardSkeleton = () => {
           <div className="flex flex-col gap-4">
             <span className="text-sm">
               <Skeleton className="rounded-lg">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Numquam aliquam eum quia aspernatur reprehenderit provident rem
-                non sunt expedita ducimus.
+                <span className="mb-5">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Numquam aliquam eum quia aspernatur reprehenderit provident
+                  rem non sunt expedita ducimus.
+                </span>
               </Skeleton>
             </span>
             <Skeleton className="rounded-lg">

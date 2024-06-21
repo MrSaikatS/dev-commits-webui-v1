@@ -13,7 +13,11 @@ export default function App({ Component, pageProps }: AppProps) {
       <NextUIProvider>
         <Layout>
           <Component {...pageProps} />
-          <Toaster />
+          <Toaster
+            richColors
+            expand={true}
+            position="bottom-right"
+          />
         </Layout>
       </NextUIProvider>
     </QueryClientProvider>

@@ -4,7 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
-import { Eye, EyeOff, Network } from "lucide-react";
+import { Tooltip } from "@nextui-org/tooltip";
+import { Eye, EyeOff, Network, UserCheck } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -23,7 +24,14 @@ const LoginForm = () => {
   const loginFunction = async (fdata: loginSchemaType) => {
     await new Promise<void>((r) => setTimeout(r, 2000));
     console.log(fdata);
-    toast.success("This is a sonner toast");
+    toast.info("User Login Successfully.", {
+      icon: (
+        <UserCheck
+          size={20}
+          color="blue"
+        />
+      ),
+    });
   };
 
   return (
@@ -67,16 +75,23 @@ const LoginForm = () => {
                 isInvalid={errors.password ? true : false}
                 errorMessage={errors.password?.message}
                 endContent={
-                  <button
-                    className="focus:outline-none"
-                    type="button"
-                    onClick={() => setLoginVisibleIcon(!loginVisibleicon)}>
-                    {loginVisibleicon ? (
-                      <Eye className="stroke-blue-600" />
-                    ) : (
-                      <EyeOff className="stroke-blue-600" />
-                    )}
-                  </button>
+                  <Tooltip
+                    content="Password Show-Hide"
+                    color="primary"
+                    shadow="md"
+                    radius="lg"
+                    showArrow={true}>
+                    <button
+                      className="focus:outline-none"
+                      type="button"
+                      onClick={() => setLoginVisibleIcon(!loginVisibleicon)}>
+                      {loginVisibleicon ? (
+                        <Eye className="stroke-blue-600" />
+                      ) : (
+                        <EyeOff className="stroke-blue-600" />
+                      )}
+                    </button>
+                  </Tooltip>
                 }
                 type={loginVisibleicon ? "text" : "password"}
               />

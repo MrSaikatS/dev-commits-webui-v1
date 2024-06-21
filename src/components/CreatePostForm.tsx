@@ -7,6 +7,7 @@ import { Textarea } from "@nextui-org/input";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useFilePicker } from "use-file-picker";
+import { Tooltip } from "@nextui-org/tooltip";
 
 const CreatePostForm = () => {
   const [selectedImage, setSelectedImage] = useState(false);
@@ -57,11 +58,17 @@ const CreatePostForm = () => {
         ))}
 
         {!selectedImage && (
-          <Button
-            color="primary"
-            onPress={openFilePicker}>
-            Select File
-          </Button>
+          <Tooltip
+            content="Select The Image"
+            shadow="md"
+            radius="lg"
+            showArrow={true}>
+            <Button
+              color="primary"
+              onPress={openFilePicker}>
+              Select File
+            </Button>
+          </Tooltip>
         )}
       </div>
       {selectedImage && (
