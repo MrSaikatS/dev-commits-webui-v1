@@ -42,10 +42,10 @@ const ProfileCard = () => {
             showArrow={true}>
             <Button
               onPress={UserPostDelete}
-              variant="light"
-              color="primary"
+              variant="ghost"
+              color="danger"
               isIconOnly>
-              <Trash2 color="blue" />
+              <Trash2 color="red" />
             </Button>
           </Tooltip>
         </CardHeader>

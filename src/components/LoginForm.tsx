@@ -1,3 +1,4 @@
+import { sdk } from "@/utils/sdk";
 import { loginSchemaType } from "@/utils/types";
 import { userLoginSchema } from "@/utils/zodSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,8 +23,13 @@ const LoginForm = () => {
   });
 
   const loginFunction = async (fdata: loginSchemaType) => {
-    await new Promise<void>((r) => setTimeout(r, 2000));
-    console.log(fdata);
+    // await new Promise<void>((r) => setTimeout(r, 2000));
+    // console.log(fdata);
+
+    await sdk.login(fdata.email, fdata.password, {
+      mode: "session",
+    });
+
     toast.info("User Login Successfully.", {
       icon: (
         <UserCheck

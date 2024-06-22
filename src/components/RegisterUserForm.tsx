@@ -1,5 +1,7 @@
+import { sdk } from "@/utils/sdk";
 import { UserRegisterSchmeaType } from "@/utils/types";
 import { userRegisterSchmea } from "@/utils/zodSchemas";
+import { registerUser } from "@directus/sdk";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
@@ -22,9 +24,16 @@ const RegisterUserForm = () => {
   });
 
   const userRegisterFunction = async (fdata: UserRegisterSchmeaType) => {
-    await new Promise<void>((r) => setTimeout(r, 2000));
+    await sdk.request(
+      registerUser(fdata.email, fdata.password, {
+        first_name: fdata.first_name,
+        last_name: fdata.last_name,
+      }),
+    );
 
-    console.log(fdata);
+    // await new Promise<void>((r) => setTimeout(r, 2000));
+
+    // console.log(fdata);
 
     toast.info("User Registration Successfully.", {
       icon: (
