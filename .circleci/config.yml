@@ -13,6 +13,11 @@ jobs:
       - run:
           name: Build the app
           command: npm run build
+      - save_cache:
+        key: dependency-cache-{{ checksum "yarn.lock" }}
+        paths:
+          - ./node_modules
+          - ./.next/cache
 
 workflows:
   prod-build-workflow:
