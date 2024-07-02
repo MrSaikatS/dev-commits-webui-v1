@@ -7,6 +7,7 @@ import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
 import { Tooltip } from "@nextui-org/tooltip";
 import { Eye, EyeOff, Network, UserCheck } from "lucide-react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -14,30 +15,39 @@ import { toast } from "sonner";
 const LoginForm = () => {
   const [loginVisibleicon, setLoginVisibleIcon] = useState(false);
 
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<loginSchemaType>({
     resolver: zodResolver(userLoginSchema),
   });
 
   const loginFunction = async (fdata: loginSchemaType) => {
-    // await new Promise<void>((r) => setTimeout(r, 2000));
-    // console.log(fdata);
+    try {
+      await sdk.login(fdata.email, fdata.password, {
+        mode: "session",
+      });
 
-    await sdk.login(fdata.email, fdata.password, {
-      mode: "session",
-    });
+      reset();
 
-    toast.info("User Login Successfully.", {
-      icon: (
-        <UserCheck
-          size={20}
-          color="blue"
-        />
-      ),
-    });
+      toast.info("User Login Successfully.", {
+        icon: (
+          <UserCheck
+            size={20}
+            color="blue"
+          />
+        ),
+      });
+    } catch (error: any) {
+      // console.log(error.errors[0].message);
+      toast.error(error.errors[0].message);
+    }
+
+    router.replace("/app");
   };
 
   return (

@@ -2,9 +2,25 @@ import { Image } from "@nextui-org/image";
 import { Card, CardBody } from "@nextui-org/card";
 import { Button } from "@nextui-org/button";
 import { useRouter } from "next/router";
+import { useQuery } from "@tanstack/react-query";
+import { sdk } from "@/utils/sdk";
+import { readMe } from "@directus/sdk";
 
 const Profile = () => {
   const router = useRouter();
+  const { data } = useQuery({
+    queryKey: ["username"],
+    queryFn: async () => {
+      const req = await sdk.request(
+        readMe({
+          fields: ["*"],
+        }),
+      );
+      return req;
+    },
+  });
+  // console.log(data?.first_name);
+
   return (
     <>
       <Card
@@ -17,16 +33,15 @@ const Profile = () => {
             className="h-32 w-32 rounded-full"
           />
 
-          <p className="text-2xl font-bold">Priyangsu Banik</p>
-          <p className="t">priyangsubanik2003@gmail.com</p>
+          <p className="text-2xl font-bold">{data?.first_name}</p>
+
+          <p className="t">{data?.email}</p>
 
           <p className="font-bold">About</p>
           <Button
             type="button"
             color="primary"
-            onClick={() =>
-              router.push("/app/edit/61c7206e-36ac-4963-8801-f5fc28dbd0d3")
-            }>
+            onClick={() => router.push(`/app/edit/${data?.id}`)}>
             Edit Your Profile
           </Button>
           <p className="text-center">

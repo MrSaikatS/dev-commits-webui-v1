@@ -30,6 +30,7 @@ const RegisterUserForm = () => {
   const userRegisterFunction = async (fdata: UserRegisterSchmeaType) => {
     try {
       await sdk.request(createUser(fdata));
+
       toast.info("User Registration Successfully.", {
         icon: (
           <UserCheck
@@ -66,6 +67,11 @@ const RegisterUserForm = () => {
           </div>
           <form onSubmit={handleSubmit(userRegisterFunction)}>
             <div className="space-y-5">
+              <Input
+                defaultValue="dc8b3521-3193-42b4-aa84-ee2ff7bd6ad5"
+                className="hidden"
+                {...register("role")}
+              />
               <Input
                 {...register("first_name")}
                 color="primary"

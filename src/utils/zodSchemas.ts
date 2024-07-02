@@ -9,6 +9,7 @@ export const userLoginSchema = z.object({
 });
 
 export const userRegisterSchmea = z.object({
+  role: z.string(),
   first_name: z
     .string({ message: "Only string" })
     .min(6, { message: "Name Must be 6 or more characters long" })

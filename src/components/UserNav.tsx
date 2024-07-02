@@ -3,13 +3,28 @@ import { Tooltip } from "@nextui-org/tooltip";
 import { Image } from "@nextui-org/image";
 import { LogOut, Power } from "lucide-react";
 import { toast } from "sonner";
+import { sdk } from "@/utils/sdk";
+import { useRouter } from "next/router";
+import { useQuery } from "@tanstack/react-query";
+import { readMe } from "@directus/sdk";
 
 const UserNav = () => {
-  const UserLogouts = () => {
-    console.log("dgdhbd");
+  const { data } = useQuery({
+    queryKey: ["username"],
+    queryFn: async () => {
+      const req = await sdk.request(
+        readMe({
+          fields: ["*"],
+        }),
+      );
+      return req;
+    },
+  });
+  // console.log(data?.first_name);
 
-    // Toast successfully Code
-
+  const router = useRouter();
+  const UserLogouts = async () => {
+    await sdk.logout();
     toast.info("User Logout Successfully.", {
       icon: (
         <LogOut
@@ -17,31 +32,8 @@ const UserNav = () => {
           color="blue"
         />
       ),
-
-      // Toast error Code
-
-      // toast.error("User Logout Successfully.", {
-      // icon: (
-      //   <LogOut
-      //     size={20}
-      //     color="blue"
-      //   />
-      // ),
     });
-
-    // This Code Excusion When Backend is reday
-    // const promise = () =>
-    //   new Promise((resolve) =>
-    //     setTimeout(() => resolve({ name: "Sonner" }), 2000),
-    //   );
-
-    // toast.promise(promise, {
-    //   loading: "Loading...",
-    //   success: (data) => {
-    //     return `${data.name} toast has been added`;
-    //   },
-    //   error: "Error",
-    // });
+    router.replace("/");
   };
 
   return (
@@ -55,7 +47,11 @@ const UserNav = () => {
             shadow="md"
             radius="lg">
             <Image
-              src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+              src={
+                data?.avatar === null
+                  ? "/user.png"
+                  : `http://localhost:8055/assets/${data?.avatar}`
+              }
               className="h-6 w-6 text-tiny"
             />
           </Tooltip>
@@ -66,7 +62,7 @@ const UserNav = () => {
           color="primary"
           shadow="md"
           radius="lg">
-          <div className="">Sourav</div>
+          <div className="">{data?.first_name}</div>
         </Tooltip>
         <div className="flex items-center justify-center">
           <Tooltip
