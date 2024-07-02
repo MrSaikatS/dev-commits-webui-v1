@@ -29,6 +29,7 @@
     "@tanstack/react-query": "5.40.0",
     "framer-motion": "11.2.9",
     "jotai": "2.8.2",
+    "jsonwebtoken": "^9.0.2",
     "lucide-react": "0.381.0",
     "next": "14.2.3",
     "react": "18",
@@ -39,6 +40,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "20",
     "@types/react": "18",
     "@types/react-dom": "18",
