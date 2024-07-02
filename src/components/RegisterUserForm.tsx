@@ -1,13 +1,14 @@
 import { sdk } from "@/utils/sdk";
 import { UserRegisterSchmeaType } from "@/utils/types";
 import { userRegisterSchmea } from "@/utils/zodSchemas";
-import { registerUser } from "@directus/sdk";
+import { createUser, registerUser } from "@directus/sdk";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
 import { Tooltip } from "@nextui-org/tooltip";
 import { Eye, EyeOff, Network, UserCheck } from "lucide-react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -15,34 +16,33 @@ import { toast } from "sonner";
 const RegisterUserForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting, errors },
   } = useForm<UserRegisterSchmeaType>({
     resolver: zodResolver(userRegisterSchmea),
   });
 
   const userRegisterFunction = async (fdata: UserRegisterSchmeaType) => {
-    await sdk.request(
-      registerUser(fdata.email, fdata.password, {
-        first_name: fdata.first_name,
-        last_name: fdata.last_name,
-      }),
-    );
-
-    // await new Promise<void>((r) => setTimeout(r, 2000));
-
-    // console.log(fdata);
-
-    toast.info("User Registration Successfully.", {
-      icon: (
-        <UserCheck
-          size={20}
-          color="blue"
-        />
-      ),
-    });
+    try {
+      await sdk.request(createUser(fdata));
+      toast.info("User Registration Successfully.", {
+        icon: (
+          <UserCheck
+            size={20}
+            color="blue"
+          />
+        ),
+      });
+      reset();
+    } catch (error: any) {
+      toast.error(`Email already registered`);
+    }
+    router.reload();
   };
 
   return (
