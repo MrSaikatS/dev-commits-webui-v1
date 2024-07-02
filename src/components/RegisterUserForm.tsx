@@ -1,7 +1,7 @@
 import { sdk } from "@/utils/sdk";
 import { UserRegisterSchmeaType } from "@/utils/types";
 import { userRegisterSchmea } from "@/utils/zodSchemas";
-import { createUser, registerUser } from "@directus/sdk";
+import { createUser } from "@directus/sdk";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
