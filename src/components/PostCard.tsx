@@ -1,3 +1,4 @@
+import { Post } from "@/utils/types";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Tooltip } from "@nextui-org/tooltip";
@@ -5,7 +6,7 @@ import { Heart, ThumbsUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-const PostCard = () => {
+const PostCard = ({ info }: { info: Post }) => {
   const [like, setLike] = useState(false);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const PostCard = () => {
                 alt="profile_img"
                 className="aspect-square p-1"
               />
-              <p className="">Sourav</p>
+              <p className="">{}</p>
             </div>
 
             <div className="">
