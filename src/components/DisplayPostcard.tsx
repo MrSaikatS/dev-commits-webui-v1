@@ -10,12 +10,7 @@ const DisplayPostcard = () => {
     queryFn: async () => {
       const res = await sdk.request(
         readItems("posts", {
-          fields: [
-            "*",
-            {
-              lyk: ["*"],
-            },
-          ],
+          fields: ["*", {}],
         }),
       );
 
