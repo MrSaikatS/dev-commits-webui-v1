@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@directus/sdk": "16.1.0",
+    "@directus/sdk": "^16.1.1",
+    "@directus/types": "^11.2.0",
     "@hookform/resolvers": "3.4.2",
     "@nextui-org/avatar": "2.0.28",
     "@nextui-org/button": "2.0.32",

@@ -3,14 +3,20 @@ import { postSchema } from "@/utils/zodSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 
+import { sdk } from "@/utils/sdk";
+import { createItem, uploadFiles } from "@directus/sdk";
 import { Textarea } from "@nextui-org/input";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { useFilePicker } from "use-file-picker";
 import { Tooltip } from "@nextui-org/tooltip";
+import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useFilePicker } from "use-file-picker";
 
 const CreatePostForm = () => {
   const [selectedImage, setSelectedImage] = useState(false);
+
+  const queryClient = useQueryClient();
+
   const {
     register,
     handleSubmit,
@@ -37,9 +43,22 @@ const CreatePostForm = () => {
     reset();
   };
 
-  const postFn = (postData: postSchemaType) => {
-    console.log(postData);
-    console.log(plainFiles);
+  const postFn = async (postData: postSchemaType) => {
+    const formData = new FormData();
+    formData.append("file", plainFiles[0]);
+
+    const { id } = await sdk.request(uploadFiles(formData));
+
+    await sdk.request(
+      createItem("posts", {
+        caption: postData.caption,
+        img: id as any,
+      }),
+    );
+
+    clearImg();
+
+    queryClient.refetchQueries();
   };
   return (
     <>

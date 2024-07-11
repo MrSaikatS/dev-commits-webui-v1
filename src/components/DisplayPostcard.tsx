@@ -3,20 +3,26 @@ import PostCard from "./PostCard";
 import PostCardSkeleton from "./PostCardSkeleton";
 import { sdk } from "@/utils/sdk";
 import { readItems } from "@directus/sdk";
+import { Post } from "@/utils/types";
 
 const DisplayPostcard = () => {
   const { data, isFetching, isLoading, isFetched, isSuccess } = useQuery({
     queryKey: ["posts"],
     queryFn: async () => {
-      const res = await sdk.request(
+      const data = await sdk.request(
         readItems("posts", {
-          fields: ["*", {}],
+          fields: [
+            "*",
+            {
+              likes: ["*"],
+              user_created: ["*"],
+              // img: ["*"],
+            },
+          ],
         }),
       );
 
-      const data = res;
-
-      return data;
+      return data as Post[];
     },
   });
 
@@ -36,6 +42,7 @@ const DisplayPostcard = () => {
   if (isFetched && isSuccess) {
     console.log(data);
 
+    // console.log();
     return (
       <>
         <div className="grid grid-cols-1 place-items-center gap-6 md:grid-cols-2">

@@ -29,14 +29,18 @@ const PostCard = ({ info }: { info: Post }) => {
           <CardHeader className="items-center justify-between">
             <div className="flex items-center gap-2">
               <Image
-                src={"/MYSELF2.jpg"}
+                src={
+                  info.user_created?.avatar === null
+                    ? ""
+                    : `http://localhost:8055/assets/${info.user_created?.avatar}`
+                }
                 width={60}
                 height={60}
                 radius="full"
                 alt="profile_img"
                 className="aspect-square p-1"
               />
-              <p className="">{}</p>
+              <p className="">{info.user_created?.first_name}</p>
             </div>
 
             <div className="">
@@ -61,7 +65,7 @@ const PostCard = ({ info }: { info: Post }) => {
                     )}
                   </button>
                 </Tooltip>
-                <p className="">1,00,000</p>
+                <p className="">{info.likes?.length}+</p>
               </div>
               {/* <DeletePostModal
               isOpen={isOpen}
@@ -71,13 +75,9 @@ const PostCard = ({ info }: { info: Post }) => {
           </CardHeader>
           <CardBody>
             <div className="flex flex-col gap-4">
-              <p className="text-sm">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Numquam aliquam eum quia aspernatur reprehenderit provident rem
-                non sunt expedita ducimus.
-              </p>
+              <p className="text-sm">{info.caption}</p>
               <Image
-                src={"/mercedes.jpg"}
+                src={`http://localhost:8055/assets/${info.img}`}
                 width={300}
                 height={300}
                 alt="post_img"
