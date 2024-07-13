@@ -40,9 +40,8 @@ const DisplayPostcard = () => {
   }
 
   if (isFetched && isSuccess) {
-    console.log(data);
+    // console.log(data);
 
-    // console.log();
     return (
       <>
         <div className="grid grid-cols-1 place-items-center gap-6 md:grid-cols-2">
