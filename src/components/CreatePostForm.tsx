@@ -58,7 +58,7 @@ const CreatePostForm = () => {
 
     clearImg();
 
-    queryClient.refetchQueries();
+    queryClient.refetchQueries({ queryKey: ["posts"] });
   };
   return (
     <>

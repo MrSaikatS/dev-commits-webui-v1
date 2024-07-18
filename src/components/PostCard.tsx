@@ -1,15 +1,12 @@
 import { sdk } from "@/utils/sdk";
 import { Post } from "@/utils/types";
-import { createItem, deleteItem, readItems, readMe } from "@directus/sdk";
+import { readItems, readMe } from "@directus/sdk";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
-import { Tooltip } from "@nextui-org/tooltip";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Heart } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import LikeBtn from "./buttons/LikeBtn";
 
 const PostCard = ({ info }: { info: Post }) => {
-  const queryClient = useQueryClient();
-
   const { data, isFetched, isSuccess } = useQuery({
     queryKey: ["likeStatus", info.id],
     queryFn: async () => {
@@ -35,20 +32,6 @@ const PostCard = ({ info }: { info: Post }) => {
   });
 
   if (isFetched && isSuccess) {
-    const toggleLikefunc = async () => {
-      if (data.length === 1) {
-        await sdk.request(deleteItem("post_likes", data[0].id));
-      } else {
-        await sdk.request(
-          createItem("post_likes", {
-            post_id: info.id as any,
-          }),
-        );
-      }
-
-      queryClient.refetchQueries();
-    };
-
     return (
       <>
         <div className="">
@@ -58,7 +41,7 @@ const PostCard = ({ info }: { info: Post }) => {
                 <Image
                   src={
                     info.user_created?.avatar === null
-                      ? ""
+                      ? "/favicon.ico"
                       : `http://localhost:8055/assets/${info.user_created?.avatar}`
                   }
                   width={60}
@@ -71,29 +54,10 @@ const PostCard = ({ info }: { info: Post }) => {
               </div>
 
               <div className="">
-                <div className="flex w-full items-center gap-2">
-                  <Tooltip
-                    content="Like"
-                    color="primary"
-                    shadow="md"
-                    radius="lg"
-                    showArrow={true}>
-                    <button
-                      onClick={toggleLikefunc}
-                      className="focus:outline-none"
-                      type="button">
-                      {data.length === 1 ? (
-                        <Heart
-                          color="red"
-                          fill="red"
-                        />
-                      ) : (
-                        <Heart />
-                      )}
-                    </button>
-                  </Tooltip>
-                  <p className="">{info.likes?.length}+</p>
-                </div>
+                <LikeBtn
+                  info={info}
+                  data={data}
+                />
                 {/* <DeletePostModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
