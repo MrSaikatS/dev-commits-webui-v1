@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Header from "./Header";
+import Header from "./Navigation/Header";
 
 type LayoutPropType = {
   children: ReactNode;

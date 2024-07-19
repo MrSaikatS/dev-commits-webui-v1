@@ -4,7 +4,7 @@ import Nav from "./Nav";
 const Header = () => {
   const router = useRouter();
 
-  if (router.pathname === "/") {
+  if (router.pathname === "/auth/login" || router.pathname === "/auth/signup") {
     return <></>;
   } else {
     return <Nav />;

@@ -1,7 +1,9 @@
+import HomePage from "@/components/Home/HomePage";
+
 const index = () => {
   return (
     <>
-      <div className=''>Hello</div>
+      <HomePage />
     </>
   );
 };
