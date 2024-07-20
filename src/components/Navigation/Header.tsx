@@ -2,12 +2,12 @@ import { useRouter } from "next/router";
 import Nav from "./Nav";
 
 const Header = () => {
-  const router = useRouter();
+  const pathname = useRouter().pathname;
 
-  if (router.pathname === "/auth/login" || router.pathname === "/auth/signup") {
-    return <></>;
-  } else {
+  if (pathname === "/" || pathname.startsWith("/app")) {
     return <Nav />;
+  } else {
+    return <></>;
   }
 };
 
