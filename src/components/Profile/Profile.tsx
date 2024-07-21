@@ -1,7 +1,7 @@
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
-import EditProfileModal from "../Modals/EditProfileModal";
+import ProfilePicture from "../Modals/ProfilePicture";
 
 const Profile = () => {
   return (
@@ -16,12 +16,12 @@ const Profile = () => {
                 radius="full"
               />
             </div>
-            <div className="w-full space-y-4 px-2 text-center sm:text-start">
+            <div className="w-full space-y-2 px-2 text-center sm:text-start">
               <div className="text-xl font-bold">jane joe</div>
               <div className="">title</div>
               <div className="text-lg">i am a full-stack developer</div>
               <div className="grid grid-flow-col gap-5">
-                <EditProfileModal />
+                <ProfilePicture />
                 <Button
                   color="secondary"
                   variant="ghost">
