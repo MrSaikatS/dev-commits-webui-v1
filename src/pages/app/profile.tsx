@@ -1,5 +1,4 @@
 import DisplayMyPosts from "@/components/Profile/MyPosts/DisplayMyPosts";
-import MyPostCard from "@/components/Profile/MyPosts/MyPostCard";
 import Profile from "@/components/Profile/Profile";
 
 const profile = () => {
