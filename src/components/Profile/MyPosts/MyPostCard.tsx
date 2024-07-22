@@ -1,7 +1,6 @@
-import { Button } from "@nextui-org/button";
+import DeletePostModal from "@/components/Modals/DeletePostModal";
 import { Card, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
-import { Trash2 } from "lucide-react";
 
 const MyPostCard = () => {
   return (
@@ -20,12 +19,7 @@ const MyPostCard = () => {
               />
               <p className="font-bold">Priyangsu Banik</p>
             </div>
-            <Button
-              variant="ghost"
-              color="danger"
-              isIconOnly>
-              <Trash2 color="red" />
-            </Button>
+            <DeletePostModal />
           </div>
           <div className="flex flex-col gap-4">
             <p className="text-sm">
