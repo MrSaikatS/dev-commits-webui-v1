@@ -1,3 +1,4 @@
+import LoadingMyPostCard from "./LoadingMyPostCard";
 import MyPostCard from "./MyPostCard";
 
 const DisplayMyPosts = () => {
@@ -7,6 +8,7 @@ const DisplayMyPosts = () => {
         <MyPostCard />
         <MyPostCard />
         <MyPostCard />
+        <LoadingMyPostCard />
         <MyPostCard />
       </div>
     </>

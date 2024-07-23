@@ -8,7 +8,7 @@ const MyPostCard = () => {
       <Card className="w-[320px]">
         <CardBody className="">
           <div className="flex justify-between">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-2">
               <Image
                 src={"https://i.pravatar.cc/150?u=a04258114e29026708c"}
                 width={50}
@@ -17,16 +17,16 @@ const MyPostCard = () => {
                 alt="profile_img"
                 className="aspect-square p-1"
               />
-              <p className="font-bold">Priyangsu Banik</p>
+              <div className="font-bold">Priyangsu Banik</div>
             </div>
             <DeletePostModal />
           </div>
           <div className="flex flex-col gap-4">
-            <p className="text-sm">
+            <div className="text-sm">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam
               aliquam eum quia aspernatur reprehenderit provident rem non sunt
               expedita ducimus.
-            </p>
+            </div>
 
             <Image
               src={"https://i.pravatar.cc/150?u=a04258114e29026708c"}
