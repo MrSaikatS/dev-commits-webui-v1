@@ -5,7 +5,7 @@ import ProfilePicture from "../Modals/ProfilePicture";
 import { useRouter } from "next/router";
 import { useFilePicker } from "use-file-picker";
 import { useState } from "react";
-import { Rss } from "lucide-react";
+import { Camera } from "lucide-react";
 
 const Profile = () => {
   const router = useRouter();
@@ -49,11 +49,11 @@ const Profile = () => {
                   src="/blank.jpg"
                 />
               )}
-              <Rss
+              <Camera
                 color="Black"
                 size={30}
                 onClick={openFilePicker}
-                className="absolute left-28 top-28 z-10 rounded-full bg-purple-800 p-1"
+                className="absolute left-28 top-28 z-10 rounded-full bg-purple-400 p-1"
               />
             </div>
             <div className="w-full space-y-2 px-2 text-center sm:text-start">
