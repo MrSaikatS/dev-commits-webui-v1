@@ -1,6 +1,7 @@
 import LoadingProfile from "@/components/Profile/LoadingProfile";
 import DisplayMyPosts from "@/components/Profile/MyPosts/DisplayMyPosts";
 import Profile from "@/components/Profile/Profile";
+import Fabi from "@/components/Home/Fabi";
 
 const profile = () => {
   return (
@@ -9,6 +10,7 @@ const profile = () => {
         <Profile />
         <LoadingProfile />
         <DisplayMyPosts />
+        <Fabi />
       </div>
     </>
   );

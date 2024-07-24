@@ -1,35 +1,17 @@
 import { Button } from "@nextui-org/button";
 import {
   Modal,
-  ModalContent,
   ModalBody,
+  ModalContent,
   useDisclosure,
 } from "@nextui-org/modal";
-import { useState } from "react";
-import { useFilePicker } from "use-file-picker";
 
 const ProfilePicture = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const [selectedImage, setSelectedImage] = useState(false);
-
-  const { openFilePicker, filesContent, clear } = useFilePicker({
-    multiple: false,
-    accept: "image/*",
-    readAs: "DataURL",
-    onFilesSuccessfullySelected: () => {
-      setSelectedImage(true);
-    },
-    onClear: () => {
-      setSelectedImage(false);
-    },
-  });
-
-  const clearImg = () => {
-    clear();
+  const profilePhotoFn = async () => {
+    console.log("dgdjbgkjdbjk");
   };
-
-  const profilePhotoFn = async () => {};
 
   return (
     <>
@@ -39,61 +21,37 @@ const ProfilePicture = () => {
           color="secondary"
           variant="ghost"
           onPress={onOpen}>
-          Edit Profile
+          Edit Picture
         </Button>
         <Modal
-          backdrop="blur"
           isOpen={isOpen}
           onOpenChange={onOpenChange}
-          isDismissable={false}
-          size="lg">
+          size="sm">
           <ModalContent>
             {(onClose) => (
               <>
                 <ModalBody className="p-6">
-                  <div className="text-center text-2xl font-bold">
-                    Profile photo
+                  <div className="text-center text-xl font-semibold">
+                    Are you sure Update This Picture?
                   </div>
-                  <div className="flex flex-col items-center justify-center gap-6 p-8">
-                    {filesContent.map((file, index) => (
-                      <img
-                        src={file.content}
-                        key={index}
-                        alt={file.name}
-                        width={320}
-                        className="aspect-square"
-                      />
-                    ))}
-                    {!selectedImage && (
-                      <Button
-                        color="primary"
-                        onPress={openFilePicker}>
-                        Select File
-                      </Button>
-                    )}
-                    {selectedImage && (
-                      <>
-                        <div className="grid grid-cols-2 gap-10">
-                          <Button
-                            onPress={clearImg}
-                            radius="sm"
-                            type="submit"
-                            color="danger"
-                            variant="ghost"
-                            fullWidth>
-                            Cancel
-                          </Button>
-                          <Button
-                            radius="sm"
-                            onPress={profilePhotoFn}
-                            color="secondary"
-                            variant="ghost"
-                            fullWidth>
-                            Upload profile
-                          </Button>
-                        </div>
-                      </>
-                    )}
+                  <div className="grid grid-cols-2 gap-3">
+                    <Button
+                      radius="sm"
+                      onPress={profilePhotoFn}
+                      color="secondary"
+                      variant="ghost"
+                      fullWidth>
+                      OK
+                    </Button>
+                    <Button
+                      onPress={onClose}
+                      radius="sm"
+                      type="submit"
+                      color="danger"
+                      variant="ghost"
+                      fullWidth>
+                      Cancel
+                    </Button>
                   </div>
                 </ModalBody>
               </>
@@ -106,3 +64,13 @@ const ProfilePicture = () => {
 };
 
 export default ProfilePicture;
+{
+  /* <div className="">
+  <Button
+    className="sm:w-28"
+    color="secondary"
+    variant="ghost">
+    Edit Profile
+  </Button>
+</div>; */
+}

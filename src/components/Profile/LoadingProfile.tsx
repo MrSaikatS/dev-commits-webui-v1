@@ -9,7 +9,7 @@ const LoadingProfile = () => {
         <CardBody>
           <div className="grid min-w-[320px] grid-flow-row place-items-center gap-2 p-4 sm:max-w-screen-sm sm:grid-flow-col">
             <div className="sm:ml-36">
-              <Skeleton className="rounded-full">
+              <Skeleton className="aspect-square h-40 w-40 rounded-full">
                 <Image
                   src="https://i.pravatar.cc/150?u=a04258114e29026708c"
                   alt=""
