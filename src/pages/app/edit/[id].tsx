@@ -1,37 +1,32 @@
-import { UserRegisterSchmeaType } from "@/utlis/types";
-import { userRegisterSchmea } from "@/utlis/zodschema";
+import { UpdateProfileSchemaType } from "@/utlis/types";
+import { updateProfileSchema } from "@/utlis/zodschema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
-import { Eye, EyeOff } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/router";
-
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-const signup = () => {
-  const [passwordVisible, setPasswordVisible] = useState(false);
-
+const id = () => {
   const router = useRouter();
 
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
-  } = useForm<UserRegisterSchmeaType>({
-    resolver: zodResolver(userRegisterSchmea),
+  } = useForm<UpdateProfileSchemaType>({
+    resolver: zodResolver(updateProfileSchema),
   });
 
-  const userRegisterFunction = async (fdata: UserRegisterSchmeaType) => {
-    toast.dismiss();
-
+  // Main Function
+  const updateProfileFunc = async (updatedata: UpdateProfileSchemaType) => {
     await new Promise<void>((r) => setTimeout(r, 2000));
-    toast.success("succesfully Register");
-    console.log(fdata);
-    router.push("/auth/login");
+    console.log(updatedata);
+
+    toast.success("Update Profile Information");
+
+    router.push("/app/profile");
   };
 
   return (
@@ -40,16 +35,11 @@ const signup = () => {
         <Card className="w-[380px] sm:w-[500px]">
           <CardBody className="space-y-11">
             <div className="text-center text-2xl font-bold">
-              Create account Welcome user
+              Update Your Profile Information
             </div>
 
-            <form onSubmit={handleSubmit(userRegisterFunction)}>
+            <form onSubmit={handleSubmit(updateProfileFunc)}>
               <div className="space-y-10">
-                <Input
-                  defaultValue="dc8b3521-3193-42b4-aa84-ee2ff7bd6ad5"
-                  className="hidden"
-                  {...register("role")}
-                />
                 <Input
                   {...register("first_name")}
                   color="secondary"
@@ -71,36 +61,24 @@ const signup = () => {
                   errorMessage={errors.last_name?.message}
                 />
                 <Input
-                  {...register("email")}
+                  {...register("title")}
                   color="secondary"
-                  type="email"
+                  type="text"
                   variant="faded"
-                  label="Email"
+                  label="Title"
                   size="sm"
-                  isInvalid={errors.email ? true : false}
-                  errorMessage={errors.email?.message}
+                  isInvalid={errors.title ? true : false}
+                  errorMessage={errors.title?.message}
                 />
                 <Input
-                  {...register("password")}
+                  {...register("description")}
                   color="secondary"
                   variant="faded"
-                  label="Password"
+                  type="text"
+                  label="Description"
                   size="sm"
-                  isInvalid={errors.password ? true : false}
-                  errorMessage={errors.password?.message}
-                  endContent={
-                    <button
-                      className="focus:outline-none"
-                      type="button"
-                      onClick={() => setPasswordVisible(!passwordVisible)}>
-                      {passwordVisible ? (
-                        <Eye className="stroke-blue-500" />
-                      ) : (
-                        <EyeOff className="stroke-blue-500" />
-                      )}
-                    </button>
-                  }
-                  type={passwordVisible ? "text" : "password"}
+                  isInvalid={errors.description ? true : false}
+                  errorMessage={errors.description?.message}
                 />
                 <Button
                   isLoading={isSubmitting}
@@ -110,18 +88,10 @@ const signup = () => {
                   variant="solid"
                   radius="sm"
                   fullWidth>
-                  Create account
+                  Update Profile Data
                 </Button>
               </div>
             </form>
-            <div className="text-center">
-              Dont have an account?{" "}
-              <Link
-                href="/auth/login"
-                className="font-bold text-purple-600">
-                Login User
-              </Link>
-            </div>
           </CardBody>
         </Card>
       </div>
@@ -129,4 +99,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default id;

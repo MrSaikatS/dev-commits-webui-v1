@@ -15,7 +15,7 @@ const Nav = () => {
       <Navbar
         isBlurred
         isBordered
-        maxWidth="md">
+        maxWidth="lg">
         <NavbarBrand className="text-2xl font-semibold">
           <Link href={"/app"}>DEV Commits</Link>
         </NavbarBrand>

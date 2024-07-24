@@ -1,4 +1,3 @@
-import DeletePostModal from "@/components/Modals/DeletePostModal";
 import { Card, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Skeleton } from "@nextui-org/skeleton";
@@ -9,7 +8,7 @@ const LoadingMyPostCard = () => {
       <Card className="w-[320px]">
         <CardBody className="">
           <div className="flex justify-between">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               <Skeleton className="rounded-full">
                 <Image
                   src={"https://i.pravatar.cc/150?u=a04258114e29026708c"}
@@ -25,11 +24,12 @@ const LoadingMyPostCard = () => {
               </div>
             </div>
 
-            <Skeleton className="rounded-lg">
+            <Skeleton className="rounded-md">
               <div className="">abcde</div>
             </Skeleton>
           </div>
-          <div className="flex flex-col gap-4">
+
+          <div className="mt-2 flex flex-col gap-5">
             <div className="text-sm">
               <Skeleton className="rounded-lg">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.

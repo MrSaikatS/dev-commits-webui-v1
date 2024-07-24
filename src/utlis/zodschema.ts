@@ -9,6 +9,7 @@ export const userLoginSchema = z.object({
 });
 
 export const userRegisterSchmea = z.object({
+  role: z.string(),
   first_name: z
     .string({ message: "Only string" })
     .min(6, { message: "Name Must be 6 or more characters long" })
@@ -42,8 +43,6 @@ export const updateProfileSchema = z.object({
     .string({ message: "Only string" })
     .min(3, { message: "Name Must be 3 or more characters long" })
     .max(20, { message: "Name Must be 20 or more characters long" }),
-
-  email: z.string().email({ message: "Please enter a valid email address." }),
 
   description: z
     .string({ message: "Only string" })
