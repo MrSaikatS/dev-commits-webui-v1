@@ -30,7 +30,7 @@ const login = () => {
     console.log(fdata);
 
     toast.success("succesfully Loginuser");
-    router.push("/");
+    router.push("/app");
   };
 
   return (
