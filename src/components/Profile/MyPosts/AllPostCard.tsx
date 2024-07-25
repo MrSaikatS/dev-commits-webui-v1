@@ -1,8 +1,9 @@
-import DeletePostModal from "@/components/Modals/DeletePostModal";
+import LikeButton from "@/components/Buttons/LikeButton";
+
 import { Card, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 
-const MyPostCard = () => {
+const AllPostCard = () => {
   return (
     <>
       <Card className="w-[320px] border-b-5">
@@ -11,7 +12,7 @@ const MyPostCard = () => {
             <div className="flex items-center gap-2">
               <Image
                 src={
-                  "https://cdn.pixabay.com/photo/2023/09/17/17/33/ai-generated-8259052_1280.jpg"
+                  "https://cdn.pixabay.com/photo/2023/03/11/22/11/ai-generated-7845402_1280.jpg"
                 }
                 width={50}
                 height={50}
@@ -21,7 +22,10 @@ const MyPostCard = () => {
               />
               <div className="font-bold">Priyangsu Banik</div>
             </div>
-            <DeletePostModal />
+            <div className="flex flex-row items-center gap-2">
+              +1
+              <LikeButton />
+            </div>
           </div>
           <div className="flex flex-col gap-4">
             <div className="text-center text-sm">
@@ -32,7 +36,7 @@ const MyPostCard = () => {
 
             <Image
               src={
-                "https://cdn.pixabay.com/photo/2023/09/25/03/27/ai-generated-8274116_960_720.png"
+                "https://cdn.pixabay.com/photo/2024/04/22/17/03/ai-generated-8713076_1280.png"
               }
               width={300}
               height={300}
@@ -46,4 +50,4 @@ const MyPostCard = () => {
   );
 };
 
-export default MyPostCard;
+export default AllPostCard;

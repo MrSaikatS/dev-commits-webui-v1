@@ -64,13 +64,3 @@ const ProfilePicture = () => {
 };
 
 export default ProfilePicture;
-{
-  /* <div className="">
-  <Button
-    className="sm:w-28"
-    color="secondary"
-    variant="ghost">
-    Edit Profile
-  </Button>
-</div>; */
-}

@@ -12,7 +12,7 @@ const Profile = () => {
 
   const [selectedImage, setSelectedImage] = useState(false);
 
-  const { openFilePicker, filesContent, clear } = useFilePicker({
+  const { openFilePicker, filesContent } = useFilePicker({
     multiple: false,
     accept: "image/*",
     readAs: "DataURL",
