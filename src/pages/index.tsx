@@ -1,7 +1,11 @@
+import LoginForm from "@/components/form/LoginForm";
+
 const index = () => {
   return (
     <>
-      <div className=''>Hello</div>
+      <div className="">
+        <LoginForm />
+      </div>
     </>
   );
 };
