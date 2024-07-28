@@ -9,8 +9,8 @@ import { useState } from "react";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import { sdk } from "@/utlis/sdk";
-import { login } from "@directus/sdk";
 import { useRouter } from "next/router";
+import { login } from "@directus/sdk";
 
 const LoginForm = () => {
   const [loginVisibleicon, setLoginVisibleIcon] = useState(false);
@@ -32,6 +32,7 @@ const LoginForm = () => {
       login(fdata.email, fdata.password, {
         mode: "session",
       })
+     
     );
 
     router.push("/app");
