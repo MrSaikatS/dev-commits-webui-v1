@@ -8,11 +8,13 @@ import {
   NavbarMenuToggle,
 } from "@nextui-org/navbar";
 import Link from "next/link";
+import UserInformation from "./button/UserInformation";
+import UserLogoutBtn from "./button/UserLogoutBtn";
 
 const Nav = () => {
   return (
     <>
-      <Navbar isBlurred isBordered maxWidth="sm">
+      <Navbar isBlurred isBordered maxWidth="lg">
         <NavbarBrand className="text-2xl font-semibold">
           <Link href={"/app"}>DEV Commits</Link>
         </NavbarBrand>
@@ -27,6 +29,12 @@ const Nav = () => {
           </NavbarItem>
           <NavbarItem>
             <Link href={"/app/profile"}>Profile</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <UserInformation />
+          </NavbarItem>
+          <NavbarItem>
+            <UserLogoutBtn />
           </NavbarItem>
         </NavbarContent>
 

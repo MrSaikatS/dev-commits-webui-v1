@@ -1,3 +1,6 @@
+import { sdk } from "@/utlis/sdk";
+import { UserPropsType } from "@/utlis/types";
+import { deleteFile, updateUser, uploadFiles } from "@directus/sdk";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
 import {
@@ -9,17 +12,18 @@ import {
 } from "@nextui-org/modal";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { toast } from "sonner";
 import { useFilePicker } from "use-file-picker";
 
-const UpdateProfilePic = () => {
+const UpdateProfilePic = ({ info }: UserPropsType) => {
   const [isFile, setIsFile] = useState(false);
 
   // Get QueryClient from the context
-  //   const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const { openFilePicker, filesContent, clear } = useFilePicker({
+  const { openFilePicker, filesContent, clear, plainFiles } = useFilePicker({
     multiple: false,
     accept: "image/*",
     readAs: "DataURL",
@@ -33,7 +37,27 @@ const UpdateProfilePic = () => {
 
   // Main Function
 
-  const uploadProfilepic = () => {};
+  const uploadProfilepic = async () => {
+    const formData = new FormData();
+
+    formData.append("file", plainFiles[0]);
+
+    if (info.avatar !== null) {
+      await sdk.request(deleteFile(info.avatar as any));
+    }
+
+    const { id } = await sdk.request(uploadFiles(formData));
+
+    await sdk.request(
+      updateUser(info.id, {
+        avatar: id,
+      })
+    );
+
+    toast.success("Success!");
+
+    queryClient.refetchQueries();
+  };
 
   return (
     <div>

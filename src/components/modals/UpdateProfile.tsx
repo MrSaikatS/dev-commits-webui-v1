@@ -1,5 +1,7 @@
-import { UpdateProfileFormType } from "@/utlis/types";
+import { sdk } from "@/utlis/sdk";
+import { UpdateProfileFormType, UserPropsType } from "@/utlis/types";
 import { updateProfileSchema } from "@/utlis/zodschema";
+import { updateMe } from "@directus/sdk";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
@@ -10,21 +12,35 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
-import { useForm } from "react-hook-form";
+import { useQueryClient } from "@tanstack/react-query";
 
-const UpdateProfile = () => {
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+
+const UpdateProfile = ({ info }: UserPropsType) => {
+  const { first_name, last_name, title, description } = info;
+
+  const queryClient = useQueryClient();
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<UpdateProfileFormType>({
     resolver: zodResolver(updateProfileSchema),
   });
 
-  const updateProfilebtn = (fdata: UpdateProfileFormType) => {
+  const updateProfilebtn = async (fdata: UpdateProfileFormType) => {
     console.log(fdata);
+    // setLoad(false);
+    await sdk.request(updateMe(fdata));
+    // setLoad(true);
+
+    toast.success("Success!");
+
+    queryClient.refetchQueries({ queryKey: ["getAllPosts"] });
   };
 
   return (
@@ -51,6 +67,7 @@ const UpdateProfile = () => {
                       color="primary"
                       variant="bordered"
                       label="First Name"
+                      defaultValue={first_name ? first_name : ""}
                       className="col-span-2"
                       {...register("first_name")}
                       errorMessage={errors.first_name?.message}
@@ -61,6 +78,7 @@ const UpdateProfile = () => {
                       color="primary"
                       variant="bordered"
                       label="Last Name"
+                      defaultValue={last_name ? last_name : ""}
                       className="col-span-2"
                       {...register("last_name")}
                       errorMessage={errors.last_name?.message}
@@ -71,6 +89,7 @@ const UpdateProfile = () => {
                       color="primary"
                       variant="bordered"
                       label="Title"
+                      defaultValue={title ? title : ""}
                       className="col-span-2"
                       {...register("title")}
                       errorMessage={errors.title?.message}
@@ -81,6 +100,7 @@ const UpdateProfile = () => {
                       color="primary"
                       variant="bordered"
                       label="Description"
+                      defaultValue={description ? description : ""}
                       className="col-span-2"
                       {...register("description")}
                       errorMessage={errors.description?.message}
@@ -97,6 +117,7 @@ const UpdateProfile = () => {
                     </Button>
                     <Button
                       size="lg"
+                      isLoading={isSubmitting}
                       color="primary"
                       variant="ghost"
                       type="submit"

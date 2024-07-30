@@ -12,6 +12,10 @@ export type RegisterFormType = z.infer<typeof registerSchema>;
 export type postSchemaType = z.infer<typeof createPostSchema>;
 export type UpdateProfileFormType = z.infer<typeof updateProfileSchema>;
 
+export type UserPropsType = {
+  info: User;
+};
+
 export interface Post {
   id: string;
   user_created?: User;
