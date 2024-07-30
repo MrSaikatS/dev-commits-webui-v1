@@ -4,13 +4,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormType } from "@/utlis/types";
 import { loginSchema } from "@/utlis/zodschema";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, UserCheck } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import { sdk } from "@/utlis/sdk";
 import { useRouter } from "next/router";
-import { login } from "@directus/sdk";
+
+import { toast } from "sonner";
 
 const LoginForm = () => {
   const [loginVisibleicon, setLoginVisibleIcon] = useState(false);
@@ -21,13 +22,31 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormType>({
     resolver: zodResolver(loginSchema),
   });
 
   //   Backend Function
-  const loginfunction = async (fdata: LoginFormType) => {};
+  const loginfunction = async (fdata: LoginFormType) => {
+    try {
+      await sdk.login(fdata.email, fdata.password, {
+        mode: "session",
+      });
+
+      reset();
+
+      toast.info("User Login Successfully.", {
+        icon: <UserCheck size={20} color="blue" />,
+      });
+    } catch (error: any) {
+      // console.log(error.errors[0].message);
+      toast.error(error.errors[0].message);
+    }
+
+    router.push("/app/");
+  };
 
   return (
     <div>

@@ -4,7 +4,7 @@ import Nav from "./Nav";
 const Header = () => {
   const router = useRouter();
 
-  if (router.pathname === "/") {
+  if (router.pathname === "/" || router.pathname.startsWith("/register")) {
     return <></>;
   } else {
     return <Nav />;

@@ -6,7 +6,16 @@ import { NextUIProvider } from "@nextui-org/system";
 import Layout from "@/components/Layout";
 import { Toaster } from "sonner";
 
-const queryClient = new QueryClient();
+// Create a client with some default options
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 5 * 60 * 1000,
+      retry: 1,
+    },
+  },
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

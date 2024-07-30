@@ -1,9 +1,16 @@
 import { z } from "zod";
-import { loginSchema, registerSchema } from "./zodschema";
+import {
+  createPostSchema,
+  loginSchema,
+  registerSchema,
+  updateProfileSchema,
+} from "./zodschema";
 import { User, File } from "@directus/types";
 
 export type LoginFormType = z.infer<typeof loginSchema>;
 export type RegisterFormType = z.infer<typeof registerSchema>;
+export type postSchemaType = z.infer<typeof createPostSchema>;
+export type UpdateProfileFormType = z.infer<typeof updateProfileSchema>;
 
 export interface Post {
   id: string;

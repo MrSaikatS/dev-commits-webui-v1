@@ -12,23 +12,16 @@ import Link from "next/link";
 const Nav = () => {
   return (
     <>
-      <Navbar
-        isBlurred
-        isBordered
-        maxWidth="md">
+      <Navbar isBlurred isBordered maxWidth="sm">
         <NavbarBrand className="text-2xl font-semibold">
           <Link href={"/app"}>DEV Commits</Link>
         </NavbarBrand>
 
-        <NavbarContent
-          justify="end"
-          className="sm:hidden">
+        <NavbarContent justify="end" className="sm:hidden">
           <NavbarMenuToggle />
         </NavbarContent>
 
-        <NavbarContent
-          justify="end"
-          className="hidden sm:flex">
+        <NavbarContent justify="center" className="hidden sm:flex">
           <NavbarItem>
             <Link href={"/app"}>Home</Link>
           </NavbarItem>
