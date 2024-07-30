@@ -27,16 +27,7 @@ const LoginForm = () => {
   });
 
   //   Backend Function
-  const loginfunction = async (fdata: LoginFormType) => {
-    await sdk.request(
-      login(fdata.email, fdata.password, {
-        mode: "session",
-      })
-     
-    );
-
-    router.push("/app");
-  };
+  const loginfunction = async (fdata: LoginFormType) => {};
 
   return (
     <div>

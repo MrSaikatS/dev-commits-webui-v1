@@ -1,7 +1,6 @@
-import { sdk } from "@/utlis/sdk";
 import { RegisterFormType } from "@/utlis/types";
 import { registerSchema } from "@/utlis/zodschema";
-import { createUser } from "@directus/sdk";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
@@ -10,7 +9,10 @@ import { Eye, EyeOff, UserCheck } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
+import { sdk } from "@/utlis/sdk";
+import { createUser } from "@directus/sdk";
 
 const RegisterForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -27,21 +29,16 @@ const RegisterForm = () => {
   });
 
   const userRegisterFunction = async (fdata: RegisterFormType) => {
+    console.log(fdata);
     try {
       await sdk.request(createUser(fdata));
-      console.log(fdata);
 
-      // toast.info("User Registration Successfully.", {
-      //   icon: (
-      //     <UserCheck
-      //       size={20}
-      //       color="blue"
-      //     />
-      //   ),
-      // });
+      toast.info("User Registration Successfully.", {
+        icon: <UserCheck size={20} color="blue" />,
+      });
       reset();
     } catch (error: any) {
-      // toast.error(`Email already registered`);
+      toast.error("Email Already Registered");
     }
     router.push("/");
   };
