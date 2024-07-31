@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import UserInformation from "./button/UserInformation";
 import UserLogoutBtn from "./button/UserLogoutBtn";
+import DarkMode from "./DarkMode";
 
 const Nav = () => {
   return (
@@ -35,6 +36,9 @@ const Nav = () => {
           </NavbarItem>
           <NavbarItem>
             <UserLogoutBtn />
+          </NavbarItem>
+          <NavbarItem>
+            <DarkMode />
           </NavbarItem>
         </NavbarContent>
 

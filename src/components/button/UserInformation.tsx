@@ -25,10 +25,8 @@ const UserInformation = () => {
             />
 
             <div className="text-xl">
-              Hello,,
-              <span className="font-bold">
-                {data.first_name} {data?.last_name}
-              </span>
+              <span>Hello, </span>
+              <span className="font-semibold">{data.first_name}</span>
             </div>
           </div>
         </div>

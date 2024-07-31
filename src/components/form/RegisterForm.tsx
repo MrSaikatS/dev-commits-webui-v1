@@ -1,5 +1,7 @@
+import { sdk } from "@/utlis/sdk";
 import { RegisterFormType } from "@/utlis/types";
 import { registerSchema } from "@/utlis/zodschema";
+import { createUser } from "@directus/sdk";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
@@ -8,15 +10,13 @@ import { Eye, EyeOff, UserCheck } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { toast } from "sonner";
 import { useForm } from "react-hook-form";
-import { sdk } from "@/utlis/sdk";
-import { createUser } from "@directus/sdk";
+import { toast } from "sonner";
 
 const RegisterForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  // const router = useRouter();
+  const router = useRouter();
 
   const {
     register,
@@ -39,7 +39,7 @@ const RegisterForm = () => {
     } catch (error: any) {
       toast.error(`Email already registered`);
     }
-    // router.reload();
+    router.push("/");
   };
 
   return (
@@ -54,7 +54,7 @@ const RegisterForm = () => {
             <form onSubmit={handleSubmit(userRegisterFunction)}>
               <div className="space-y-10">
                 <Input
-                  defaultValue="f157cb72-fa69-445e-9516-3eb139c5536d"
+                  defaultValue="d44f1a63-4a82-4f43-b54b-5991fc4d49b3"
                   className="hidden"
                   {...register("role")}
                 />

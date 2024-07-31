@@ -1,9 +1,11 @@
+import { Post } from "@/utlis/types";
+import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import LikeButton from "../button/LikeButton";
-import { Button } from "@nextui-org/button";
+import DeletePost from "../button/DeletePost";
 
-const UserProfileCard = () => {
+const UserProfileCard = ({ detail }: { detail: Post }) => {
   return (
     <>
       <div>
@@ -12,14 +14,21 @@ const UserProfileCard = () => {
             <CardHeader className="items-center justify-between">
               <div className="flex items-center gap-2">
                 <Image
-                  src={"/MYSELF2.jpg"}
+                  src={
+                    detail.user_created?.avatar === null
+                      ? "/MYSELF2.jpg"
+                      : `${process.env.NEXT_PUBLIC_API_URL}/assets/${detail.user_created?.avatar}`
+                  }
                   height={60}
                   width={60}
                   radius="full"
                   className="aspect-square p-1"
                   isBlurred
                 />
-                <div className="text-lg">Sourav Bhattacharyya</div>
+                <div className="text-lg">
+                  {detail.user_created?.first_name}{" "}
+                  {detail.user_created?.last_name}
+                </div>
               </div>
 
               <LikeButton />
@@ -28,7 +37,7 @@ const UserProfileCard = () => {
             <CardBody className="space-y-6">
               <div className="grid place-items-center">
                 <Image
-                  src={"/mercedes.jpg"}
+                  src={`http://localhost:8055/assets/${detail.img}`}
                   height={300}
                   width={300}
                   className="aspect-video"
@@ -36,12 +45,9 @@ const UserProfileCard = () => {
                 />
               </div>
 
-              <div className="text-justify">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Expedita quia, odit mollitia est deserunt possimus dolores amet
-                esse, nisi laboriosam omnis. Fuga quasi obcaecati labore
-                aspernatur maiores perferendis nesciunt molestiae?
-              </div>
+              <div className="text-justify">{detail.caption}</div>
+
+              <DeletePost detail={detail} />
               <Button color="secondary">Delete</Button>
             </CardBody>
           </Card>

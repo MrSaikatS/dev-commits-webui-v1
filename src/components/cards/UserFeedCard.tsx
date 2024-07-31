@@ -1,8 +1,9 @@
 import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import LikeButton from "../button/LikeButton";
+import { Post } from "@/utlis/types";
 
-const UserFeedCard = () => {
+const UserFeedCard = ({ detail }: { detail: Post }) => {
   return (
     <div>
       <div className="mt-2">
@@ -10,14 +11,21 @@ const UserFeedCard = () => {
           <CardHeader className="items-center justify-between">
             <div className="flex items-center gap-2">
               <Image
-                src={"/MYSELF2.jpg"}
+                src={
+                  detail.user_created?.avatar === null
+                    ? "/MYSELF2.jpg"
+                    : `${process.env.NEXT_PUBLIC_API_URL}/assets/${detail.user_created?.avatar}`
+                }
                 height={60}
                 width={60}
                 radius="full"
                 className="aspect-square p-1"
                 isBlurred
               />
-              <div className="text-lg">Sourav Bhattacharyya</div>
+              <div className="text-lg">
+                {detail.user_created?.first_name}{" "}
+                {detail.user_created?.last_name}
+              </div>
             </div>
 
             <LikeButton />
@@ -26,7 +34,7 @@ const UserFeedCard = () => {
           <CardBody className="space-y-6">
             <div className="grid place-items-center">
               <Image
-                src={"/mercedes.jpg"}
+                src={`${process.env.NEXT_PUBLIC_API_URL}/assets/${detail.img}`}
                 height={300}
                 width={300}
                 className="aspect-video"
@@ -34,12 +42,7 @@ const UserFeedCard = () => {
               />
             </div>
 
-            <div className="text-justify">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-              quia, odit mollitia est deserunt possimus dolores amet esse, nisi
-              laboriosam omnis. Fuga quasi obcaecati labore aspernatur maiores
-              perferendis nesciunt molestiae?
-            </div>
+            <div className="text-justify">{detail.caption}</div>
           </CardBody>
         </Card>
       </div>
