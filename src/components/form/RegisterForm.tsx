@@ -1,6 +1,5 @@
 import { RegisterFormType } from "@/utlis/types";
 import { registerSchema } from "@/utlis/zodschema";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
@@ -17,7 +16,7 @@ import { createUser } from "@directus/sdk";
 const RegisterForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const {
     register,
@@ -40,7 +39,7 @@ const RegisterForm = () => {
     } catch (error: any) {
       toast.error(`Email already registered`);
     }
-    router.reload();
+    // router.reload();
   };
 
   return (
@@ -55,7 +54,7 @@ const RegisterForm = () => {
             <form onSubmit={handleSubmit(userRegisterFunction)}>
               <div className="space-y-10">
                 <Input
-                  defaultValue="dc8b3521-3193-42b4-aa84-ee2ff7bd6ad5"
+                  defaultValue="f157cb72-fa69-445e-9516-3eb139c5536d"
                   className="hidden"
                   {...register("role")}
                 />
