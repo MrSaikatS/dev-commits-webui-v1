@@ -39,7 +39,7 @@ const RegisterForm = () => {
     } catch (error: any) {
       toast.error(`Email already registered`);
     }
-    router.push("/");
+    router.replace("/");
   };
 
   return (

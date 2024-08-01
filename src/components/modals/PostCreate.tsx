@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/button";
-import { FileDigit, Heading2 } from "lucide-react";
+import { FileDigit, Heading2, Plus } from "lucide-react";
 import {
   Modal,
   ModalBody,
@@ -15,25 +15,14 @@ const PostCreate = () => {
     <div>
       <div className="fixed bottom-9 right-10 z-50">
         <Button
+          color="primary"
+          variant="shadow"
+          radius="full"
           isIconOnly
-          size="lg"
-          color="primary"
-          variant="shadow"
-          className="h-14 w-14 sm:hidden"
+          className="h-16 w-16"
           onPress={onOpen}
         >
-          <Heading2 size={28} />
-        </Button>
-
-        <Button
-          size="lg"
-          color="primary"
-          variant="shadow"
-          className="hidden h-14 sm:flex"
-          startContent={<FileDigit size={28} />}
-          onPress={onOpen}
-        >
-          Create Post
+          <Plus size={40} />
         </Button>
       </div>
 

@@ -48,7 +48,7 @@ const UserProfileCard = ({ detail }: { detail: Post }) => {
               <div className="text-justify">{detail.caption}</div>
 
               <DeletePost detail={detail} />
-              <Button color="secondary">Delete</Button>
+              {/* <Button color="secondary">Delete</Button> */}
             </CardBody>
           </Card>
         </div>

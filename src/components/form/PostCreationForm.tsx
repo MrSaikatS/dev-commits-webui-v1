@@ -18,7 +18,7 @@ const PostCreationForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<postSchemaType>({
     resolver: zodResolver(createPostSchema),
@@ -109,6 +109,7 @@ const PostCreationForm = () => {
             </Button>
             <Button
               radius="sm"
+              isLoading={isSubmitting}
               type="submit"
               color="primary"
               variant="shadow"

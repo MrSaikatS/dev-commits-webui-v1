@@ -6,12 +6,13 @@ import { useQueryClient } from "@tanstack/react-query";
 
 const DeletePost = ({ detail }: { detail: Post }) => {
   const queryClient = useQueryClient();
+
   const deletFn = async () => {
-    await sdk.request(deleteFile(detail.img?.id as string));
+    // await sdk.request(deleteFile( detail));
+    // await sdk.request(deleteItem("posts", detail.id));
+    // queryClient.refetchQueries();
 
-    await sdk.request(deleteItem("posts", detail.id));
-
-    queryClient.refetchQueries();
+    console.log(detail);
   };
   return (
     <>
