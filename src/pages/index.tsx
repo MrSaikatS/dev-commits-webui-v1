@@ -1,7 +1,9 @@
+import FeedPostContainer from "@/components/Feed/FeedPostContainer";
+
 const index = () => {
   return (
     <>
-      <div className=''>Hello</div>
+      <FeedPostContainer />
     </>
   );
 };

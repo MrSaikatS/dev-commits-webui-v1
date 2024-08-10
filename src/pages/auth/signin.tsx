@@ -4,26 +4,30 @@ import { Button } from "@nextui-org/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, Loginschemtype } from "@/utlis/zodschema";
-import { sdk } from "@/utlis/sdk";
-import { login } from "@directus/sdk";
+import { loginUser } from "@/utlis/apiQueries";
+import { useRouter } from "next/router";
 
 const signin = () => {
   const {
     register,
     handleSubmit,
-
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<Loginschemtype>({
     resolver: zodResolver(loginSchema),
   });
 
+  const router = useRouter();
+
   // Backend
 
   const onsubmit = async (fdata: Loginschemtype) => {
     try {
-      await sdk.login(fdata.email, fdata.password, {
-        mode: "session",
-      });
+      const login = await loginUser(fdata);
+      if (login) {
+        router.push("/");
+        reset();
+      }
     } catch (error) {
       console.log(typeof error);
     }
