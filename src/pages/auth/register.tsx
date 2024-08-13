@@ -8,7 +8,7 @@ import {
   registerSchema,
   Registerschemtype,
 } from "@/utlis/zodschema";
-import { loginUser } from "@/utlis/apiQueries";
+import { registerUser } from "@/utlis/apiQueries";
 import { useRouter } from "next/router";
 
 const register = () => {
@@ -26,11 +26,11 @@ const register = () => {
   // Backend
 
   const onsubmit = async (fdata: Registerschemtype) => {
-    // const login = await loginUser(fdata);
-    // if (login) {
-    //   router.push("/");
-    //   reset();
-    // }
+    const login = await registerUser(fdata);
+    if (login) {
+      push("/");
+      reset();
+    }
   };
 
   return (
