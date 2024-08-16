@@ -2,6 +2,7 @@ import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import Link from "next/link";
+import ProfilePicUpdate from "./Button/ProfilePicUpdate";
 
 const UserNav = () => {
   return (
@@ -27,13 +28,9 @@ const UserNav = () => {
               </div>
             </div>
 
-            <div className="space-x-4">
-              <Button variant="shadow" color="success">
-                <Link href={"/"}>Home</Link>
-              </Button>
-              <Button variant="shadow" color="success">
-                <Link href={"/profile/edit"}>Profile</Link>
-              </Button>
+            <div className="space-x-4 flex justify-center items-center">
+              <ProfilePicUpdate />
+              <ProfilePicUpdate />
             </div>
           </CardBody>
         </Card>

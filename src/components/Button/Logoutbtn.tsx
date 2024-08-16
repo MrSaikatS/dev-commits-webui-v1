@@ -6,7 +6,7 @@ const Logoutbtn = () => {
     <>
       <div className="">
         <Button isIconOnly>
-          <LogOut />
+          <LogOut size={20} />
         </Button>
       </div>
     </>
