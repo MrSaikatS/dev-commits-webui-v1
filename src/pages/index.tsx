@@ -1,3 +1,4 @@
+import ProfilleDetailsUpdate from "@/components/Button/ProfilleDetailsUpdate";
 import LoadingFeedCard from "@/components/Cards/LoadingFeedCard";
 import UserFeedCard from "@/components/Cards/UserFeedCard";
 
