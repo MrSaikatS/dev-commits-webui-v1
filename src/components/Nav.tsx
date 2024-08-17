@@ -12,16 +12,18 @@ import Darkmode from "./Button/Darkmode";
 import Logoutbtn from "./Button/Logoutbtn";
 import { Input } from "@nextui-org/input";
 import { Search } from "lucide-react";
+import UserBtnProfle from "./Button/UserBtnProfle";
 
 const Nav = () => {
   return (
     <>
-      <Navbar isBlurred isBordered maxWidth="lg">
+      <Navbar className="" isBlurred isBordered maxWidth="xl">
         <NavbarBrand className="text-2xl font-semibold">
           <Link href={"/"}>DEV Commits</Link>
         </NavbarBrand>
         <NavbarBrand className="text-2xl font-semibold">
           <Input
+            className="lg:w-[500px] w-40"
             placeholder="Search user"
             endContent={
               <>
@@ -39,6 +41,9 @@ const Nav = () => {
 
         <NavbarContent justify="end" className="hidden sm:flex">
           <NavbarItem>
+            <UserBtnProfle />
+          </NavbarItem>
+          <NavbarItem>
             <Darkmode />
           </NavbarItem>
           <NavbarItem>
@@ -46,7 +51,10 @@ const Nav = () => {
           </NavbarItem>
         </NavbarContent>
 
-        <NavbarMenu className="items-center">
+        <NavbarMenu className="items-center justify-center">
+          <NavbarMenuItem>
+            <UserBtnProfle />
+          </NavbarMenuItem>
           <NavbarMenuItem>
             <Darkmode />
           </NavbarMenuItem>

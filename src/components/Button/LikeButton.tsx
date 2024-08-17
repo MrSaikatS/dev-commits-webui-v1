@@ -3,10 +3,11 @@ import { Heart } from "lucide-react";
 const LikeButton = () => {
   return (
     <>
-      <div className="flex items-start">
+      <div className="flex ml-4 justify-center items-center gap-3">
         <Button size="md" variant="solid" isIconOnly>
           <Heart />
         </Button>
+        User like
       </div>
     </>
   );

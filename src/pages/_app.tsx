@@ -12,14 +12,14 @@ const queryClient = new QueryClient();
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <NextUIProvider>
-        <NextThemesProvider attribute="class" defaultTheme="dark">
+      <NextThemesProvider attribute="class" defaultTheme="dark">
+        <NextUIProvider>
           <Layout>
             <Component {...pageProps} />
             <Toaster />
           </Layout>
-        </NextThemesProvider>
-      </NextUIProvider>
+        </NextUIProvider>
+      </NextThemesProvider>
     </QueryClientProvider>
   );
 }

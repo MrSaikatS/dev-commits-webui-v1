@@ -9,10 +9,10 @@ const Darkmode = () => {
     <>
       <div className="space-x-2">
         <Button isIconOnly onClick={() => setTheme("light")}>
-          <Sun />
+          <Sun size={20} />
         </Button>
         <Button isIconOnly onClick={() => setTheme("dark")}>
-          <Moon />
+          <Moon size={20} />
         </Button>
       </div>
     </>
