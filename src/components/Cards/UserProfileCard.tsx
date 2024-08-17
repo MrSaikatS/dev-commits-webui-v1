@@ -1,8 +1,9 @@
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import DeleteBtn from "../Button/DeleteBtn";
+import { PostTypeSingle } from "@/utlis/types/PostType";
 
-const UserProfileCard = () => {
+const UserProfileCard = ({ info }: { info: PostTypeSingle }) => {
   return (
     <>
       <Card className="w-[350px]">
@@ -22,15 +23,13 @@ const UserProfileCard = () => {
         <CardBody className="flex items-center">
           <Image
             className="rounded-3xl aspect-square"
-            src={"/backgroundimage.JPG"}
+            src={`${process.env.NEXT_PUBLIC_API}/assets/${info.post_img} || "/girl.png"`}
             width={300}
             height={200}
             alt="Profile image"
           />
           <div className="text-center mt-3">
-            <span className="font-extralight">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
-            </span>
+            <span className="font-extralight">{info.caption}</span>
           </div>
         </CardBody>
         <CardFooter className="flex items-center justify-center">

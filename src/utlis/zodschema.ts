@@ -42,6 +42,14 @@ export const updateProfileSchema = z.object({
     .max(100, { message: "Name Must be 100 or more characters long" }),
 });
 
+export const postSchema = z.object({
+  caption: z
+    .string()
+    .min(5, { message: "Caption should be atleast 5 characters" }),
+  // postImage: z.instanceof(File),
+});
+
 export type Loginschemtype = z.infer<typeof loginSchema>;
 export type Registerschemtype = z.infer<typeof registerSchema>;
 export type UpdateProfileSchemaType = z.infer<typeof updateProfileSchema>;
+export type PostSchemaType = z.infer<typeof postSchema>;

@@ -2,6 +2,8 @@ import { toast } from "sonner";
 import { env } from "./env";
 import { Loginschemtype, Registerschemtype } from "./zodschema";
 import ky, { HTTPError } from "ky";
+import { UserType } from "./types/UserType";
+import { json } from "stream/consumers";
 
 export const loginUser = async (loginData: Loginschemtype) => {
   try {
@@ -61,5 +63,41 @@ export const registerUser = async (registerData: Registerschemtype) => {
     } else {
       toast.error("Network Error");
     }
+  }
+};
+
+export const getCurrentUser = async () => {
+  try {
+    const result = await ky.get("me", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/users`,
+      credentials: "include",
+      mode: "cors",
+    });
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getCurrentUserPosts = async () => {
+  try {
+    const filter = {
+      user_created: {
+        _eq: "$CURRENT_USER",
+      },
+    };
+
+    const result = await ky.get("posts", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/items`,
+      credentials: "include",
+      mode: "cors",
+      searchParams: new URLSearchParams({
+        filter: JSON.stringify(filter),
+      }),
+    });
+
+    return result;
+  } catch (error) {
+    console.log(error);
   }
 };
