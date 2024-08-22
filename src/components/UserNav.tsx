@@ -30,9 +30,9 @@ const UserNav = () => {
           <Card className="w-[380px] sm:w-[500px]">
             <CardBody className="flex flex-col justify-center items-center space-y-1">
               <Image
-                src={"/girl.png"}
-                width={150}
-                height={50}
+                src={`${process.env.NEXT_PUBLIC_API}/assets/${data?.data.avatar} || "/girl.png"`}
+                className="cursor-pointer object-cover w-40 h-40 "
+                radius="full"
                 alt="Profile image"
               />
               <div className="flex flex-col items-center">

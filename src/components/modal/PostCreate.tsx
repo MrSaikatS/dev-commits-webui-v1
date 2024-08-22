@@ -35,7 +35,9 @@ const PostCreate = () => {
     reset();
   };
 
-  const postFn = async (postData: PostSchemaType) => {};
+  const postFn = async (postData: PostSchemaType) => {
+    console.log(postData);
+  };
   return (
     <>
       {/* <div className="mx-auto flex w-[320px] items-center justify-center sm:w-full"> */}
@@ -48,7 +50,7 @@ const PostCreate = () => {
             key={index}
             alt={file.name}
             width={290}
-            className="aspect-square rounded-md"
+            className="rounded-md object-contain"
           />
         ))}
 

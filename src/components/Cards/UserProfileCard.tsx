@@ -4,6 +4,8 @@ import DeleteBtn from "../Button/DeleteBtn";
 import { PostTypeSingle } from "@/utlis/types/PostType";
 
 const UserProfileCard = ({ info }: { info: PostTypeSingle }) => {
+  console.log(info);
+
   return (
     <>
       <Card className="w-[350px]">

@@ -10,7 +10,9 @@ const privateprofile = () => {
     queryKey: ["getMePost"],
     queryFn: async () => {
       const res = await getCurrentUserPosts();
-      return res?.json<PostType>();
+      if (res !== undefined) {
+        return res.json<PostType>();
+      }
     },
   });
 

@@ -101,3 +101,62 @@ export const getCurrentUserPosts = async () => {
     console.log(error);
   }
 };
+
+export const logoutUser = async () => {
+  try {
+    const res = await ky.post("logout", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/auth`,
+      credentials: "include",
+      mode: "cors",
+      json: {
+        mode: "session",
+      },
+    });
+
+    if (res.ok) {
+      toast.success("Logout Success!");
+      return true;
+    }
+  } catch (error: any) {
+    if (error.name === "HTTPError") {
+      const httpError = error as HTTPError;
+      const errorJson = await httpError.response.json<any>();
+      toast.error(errorJson.errors[0].message);
+    } else {
+      toast.error("Network Error");
+    }
+  }
+};
+
+export const getPosts = async () => {
+  try {
+    const result = await ky.get("posts", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/items`,
+      credentials: "include",
+      mode: "cors",
+      searchParams: new URLSearchParams({
+        fields: "*.*",
+      }),
+    });
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postLike = async (postid: string) => {
+  try {
+    const varr = await ky.post("likes", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/items`,
+      credentials: "include",
+      mode: "cors",
+      json: {
+        post_id: postid,
+      },
+    });
+    console.log(varr);
+  } catch (error) {
+    console.log(error);
+  }
+};
