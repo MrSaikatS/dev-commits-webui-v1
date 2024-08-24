@@ -1,7 +1,7 @@
 import { Card, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import ProfilePicUpdate from "./Button/ProfilePicUpdate";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getCurrentUser, getCurrentUserPosts } from "@/utlis/apiQueries";
 import { UserType } from "@/utlis/types/UserType";
 import UserNavSkele from "./UserNavSkele";
@@ -49,7 +49,7 @@ const UserNav = () => {
               </div>
 
               <div className="space-x-4 flex justify-center items-center">
-                <ProfilePicUpdate />
+                <ProfilePicUpdate id={data?.data.avatar} />
                 <button onClick={getCurrentUserPosts}>hi</button>
               </div>
             </CardBody>

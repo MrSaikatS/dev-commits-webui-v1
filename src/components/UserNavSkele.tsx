@@ -1,6 +1,5 @@
 import { Card, CardBody } from "@nextui-org/card";
 import ProfilePicUpdate from "./Button/ProfilePicUpdate";
-import { Image } from "@nextui-org/image";
 import { Skeleton } from "@nextui-org/skeleton";
 
 const UserNavSkele = () => {
@@ -10,12 +9,7 @@ const UserNavSkele = () => {
         <Card className="w-[380px] sm:w-[500px]">
           <CardBody className="flex flex-col justify-center items-center space-y-1">
             <Skeleton className="rounded-2xl">
-              <Image
-                src={"/girl.png"}
-                width={150}
-                height={50}
-                alt="Profile image"
-              />
+              <div className="w-40 h-40 rounded-full"></div>
             </Skeleton>
 
             <div className="flex flex-col items-center gap-3">
@@ -45,10 +39,10 @@ const UserNavSkele = () => {
             <div className="space-x-4 flex justify-center items-center">
               <Skeleton className="rounded-2xl">
                 {" "}
-                <ProfilePicUpdate />
+                <div className="w-12 h-2"></div>
               </Skeleton>
               <Skeleton className="rounded-2xl">
-                <ProfilePicUpdate />
+                <div className="w-12 h-2"></div>
               </Skeleton>
             </div>
           </CardBody>

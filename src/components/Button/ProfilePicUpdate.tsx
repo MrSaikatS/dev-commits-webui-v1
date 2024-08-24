@@ -1,3 +1,4 @@
+import { updateProfileImage } from "@/utlis/apiQueries";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/image";
 import {
@@ -7,11 +8,12 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { toast } from "sonner";
 import { useFilePicker } from "use-file-picker";
 
-const ProfilePicUpdate = () => {
+const ProfilePicUpdate = ({ id }: { id: string }) => {
+  const queryClient = useQueryClient();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const [pickFile, setPickFile] = useState(false);
@@ -32,13 +34,18 @@ const ProfilePicUpdate = () => {
 
   // main function backend
 
-  const imageUpload = () => {
-    if (!pickFile) {
-      toast.success("Plz New Profile Pic Upload");
-    }
-    if (pickFile) {
-      //   main code
-    }
+  const imageUpload = async () => {
+    const abc = await updateProfileImage(plainFiles);
+    console.log(abc);
+
+    queryClient.refetchQueries({ queryKey: ["getMe"] });
+
+    // if (!pickFile) {
+    //   toast.success("Plz New Profile Pic Upload");
+    // }
+    // if (pickFile) {
+    //   //   main code
+    // }
   };
 
   return (
@@ -62,7 +69,7 @@ const ProfilePicUpdate = () => {
                     <button onClick={openFilePicker}>
                       <Image
                         radius="full"
-                        src={"/girl.png"}
+                        src={`${process.env.NEXT_PUBLIC_API}/assets/${id}`}
                         width={200}
                         height={200}
                         alt="Profile image"
@@ -71,7 +78,7 @@ const ProfilePicUpdate = () => {
                   </>
                 )}
                 {filesContent.map((file, index) => (
-                  <div className="">
+                  <div key={index}>
                     <Image
                       width={200}
                       height={200}

@@ -2,8 +2,7 @@ import { toast } from "sonner";
 import { env } from "./env";
 import { Loginschemtype, Registerschemtype } from "./zodschema";
 import ky, { HTTPError } from "ky";
-import { UserType } from "./types/UserType";
-import { json } from "stream/consumers";
+import { useState } from "react";
 
 export const loginUser = async (loginData: Loginschemtype) => {
   try {
@@ -156,6 +155,31 @@ export const postLike = async (postid: string) => {
       },
     });
     console.log(varr);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateProfileImage = async (files: File[]) => {
+  try {
+    const formData = new FormData();
+    formData.append("file", files[0]);
+
+    const editProfile = await ky
+      .post("files", {
+        prefixUrl: `${env.NEXT_PUBLIC_API}`,
+        credentials: "include",
+        mode: "cors",
+        body: formData,
+      })
+      .json();
+    console.log(editProfile);
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const ProfileImage = async () => {
+  try {
   } catch (error) {
     console.log(error);
   }
