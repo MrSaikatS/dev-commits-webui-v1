@@ -91,6 +91,7 @@ export const getCurrentUserPosts = async () => {
       credentials: "include",
       mode: "cors",
       searchParams: new URLSearchParams({
+        fields: "*.*",
         filter: JSON.stringify(filter),
       }),
     });
