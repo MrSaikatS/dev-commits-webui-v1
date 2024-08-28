@@ -2,7 +2,7 @@ import { toast } from "sonner";
 import { env } from "./env";
 import { Loginschemtype, Registerschemtype } from "./zodschema";
 import ky, { HTTPError } from "ky";
-import { useState } from "react";
+import { LikeArray } from "./types/LikeType";
 
 export const loginUser = async (loginData: Loginschemtype) => {
   try {
@@ -184,3 +184,64 @@ export const ProfileImage = async () => {
     console.log(error);
   }
 };
+
+
+export const getLikesByPostID = async (postid: string) => {
+  try {
+    const filter = {
+      post_id: {
+        _eq: postid,
+      },
+      user_created: {
+        _eq: "$CURRENT_USER"
+      }
+    };
+    const res = await ky.get("likes", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/items`,
+      credentials: "include",
+      mode: "cors",
+      searchParams: new URLSearchParams({
+        filter: JSON.stringify(filter),
+      }),
+    })
+
+
+    return res.json<LikeArray>()
+  } catch (error) {
+    console.log(error);
+
+  }
+}
+export const deleteLikesByPostID = async (postid: string) => {
+  try {
+    const filter = {
+      post_id: {
+        _eq: postid,
+      },
+
+      user_created: {
+        _eq: "$CURRENT_USER"
+      }
+    };
+    const res = await ky.get("likes", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/items`,
+      credentials: "include",
+      mode: "cors",
+      searchParams: new URLSearchParams({
+        filter: JSON.stringify(filter),
+      }),
+    })
+
+
+    const data = (await res.json<LikeArray>()).data[0]
+
+    await ky.delete(data.id, {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/items/likes`,
+      credentials: "include",
+      mode: "cors",
+    })
+  } catch (error) {
+    console.log(error);
+
+  }
+}
