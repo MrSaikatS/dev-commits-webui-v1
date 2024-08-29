@@ -25,7 +25,7 @@ const UserProfileCard = ({ info }: { info: PostTypeSingle }) => {
         <CardHeader className="flex flex-row gap-2">
           <Image
             radius="full"
-            src={"/girl.png"}
+            src={`${env.NEXT_PUBLIC_API}/assets/${info.user_created.avatar} || "/girl.png"`}
             width={60}
             height={60}
             alt="Profile image"

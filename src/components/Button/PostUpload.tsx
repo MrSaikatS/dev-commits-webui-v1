@@ -36,7 +36,7 @@ const PostUpload = () => {
           {(onClose) => (
             <>
               <ModalBody className="p-6">
-                <PostCreate />
+                <PostCreate onOpenChange={onOpenChange} />
               </ModalBody>
             </>
           )}

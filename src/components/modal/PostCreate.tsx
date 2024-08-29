@@ -5,20 +5,24 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useFilePicker } from "use-file-picker";
 import { Textarea } from "@nextui-org/input";
+import { uploadPost } from "@/utlis/apiQueries";
+import { useQueryClient } from "@tanstack/react-query";
 
-const PostCreate = () => {
+const PostCreate = ({ onOpenChange }: { onOpenChange: () => void }) => {
+  const queryClient = useQueryClient();
+
   const [selectedImage, setSelectedImage] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<PostSchemaType>({
     resolver: zodResolver(postSchema),
   });
 
-  const { openFilePicker, filesContent, clear } = useFilePicker({
+  const { openFilePicker, filesContent, plainFiles, clear } = useFilePicker({
     multiple: false,
     accept: "image/*",
     readAs: "DataURL",
@@ -36,8 +40,13 @@ const PostCreate = () => {
   };
 
   const postFn = async (postData: PostSchemaType) => {
-    console.log(postData);
+    await uploadPost(postData, plainFiles);
+    onOpenChange();
+
+    queryClient.refetchQueries({ queryKey: ["allposts"] });
   };
+  console.log();
+
   return (
     <>
       {/* <div className="mx-auto flex w-[320px] items-center justify-center sm:w-full"> */}
@@ -87,6 +96,7 @@ const PostCreate = () => {
             Cancel
           </Button>
           <Button
+            isLoading={isSubmitting}
             radius="sm"
             type="submit"
             color="primary"

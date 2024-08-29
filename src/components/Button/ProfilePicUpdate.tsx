@@ -39,13 +39,6 @@ const ProfilePicUpdate = ({ id }: { id: string }) => {
     console.log(abc);
 
     queryClient.refetchQueries({ queryKey: ["getMe"] });
-
-    // if (!pickFile) {
-    //   toast.success("Plz New Profile Pic Upload");
-    // }
-    // if (pickFile) {
-    //   //   main code
-    // }
   };
 
   return (

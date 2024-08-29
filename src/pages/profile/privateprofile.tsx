@@ -14,6 +14,7 @@ const privateprofile = () => {
         return res.json<PostType>();
       }
     },
+    refetchOnWindowFocus: false,
   });
 
   if (isLoading || isFetching) {

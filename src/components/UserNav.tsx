@@ -1,10 +1,11 @@
 import { Card, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import ProfilePicUpdate from "./Button/ProfilePicUpdate";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getCurrentUser, getCurrentUserPosts } from "@/utlis/apiQueries";
+import { useQuery } from "@tanstack/react-query";
+import { getCurrentUser } from "@/utlis/apiQueries";
 import { UserType } from "@/utlis/types/UserType";
 import UserNavSkele from "./UserNavSkele";
+import ProfilleDetailsUpdate from "./Button/ProfilleDetailsUpdate";
 
 const UserNav = () => {
   const { data, isLoading, isFetching, isSuccess, isFetched } = useQuery({
@@ -13,6 +14,7 @@ const UserNav = () => {
       const res = await getCurrentUser();
       return res?.json<UserType>();
     },
+    refetchOnWindowFocus: false,
   });
 
   if (isLoading || isFetching) {
@@ -50,7 +52,7 @@ const UserNav = () => {
 
               <div className="space-x-4 flex justify-center items-center">
                 <ProfilePicUpdate id={data?.data.avatar} />
-                <button onClick={getCurrentUserPosts}>hi</button>
+                <ProfilleDetailsUpdate />
               </div>
             </CardBody>
           </Card>

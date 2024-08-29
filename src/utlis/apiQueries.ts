@@ -1,8 +1,13 @@
 import { toast } from "sonner";
 import { env } from "./env";
-import { Loginschemtype, Registerschemtype } from "./zodschema";
+import {
+  Loginschemtype,
+  Registerschemtype,
+  UpdateProfileSchemaType,
+} from "./zodschema";
 import ky, { HTTPError } from "ky";
 import { LikeArray } from "./types/LikeType";
+import { FileType } from "./types/FileType";
 
 export const loginUser = async (loginData: Loginschemtype) => {
   try {
@@ -173,19 +178,22 @@ export const updateProfileImage = async (files: File[]) => {
         mode: "cors",
         body: formData,
       })
-      .json();
-    console.log(editProfile);
-  } catch (error) {
-    console.log(error);
-  }
-};
-export const ProfileImage = async () => {
-  try {
-  } catch (error) {
-    console.log(error);
-  }
-};
+      .json<FileType>();
 
+    const result = await ky.patch("me", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/users`,
+      credentials: "include",
+      mode: "cors",
+      json: {
+        avatar: editProfile.data.id,
+      },
+    });
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getLikesByPostID = async (postid: string) => {
   try {
@@ -194,8 +202,8 @@ export const getLikesByPostID = async (postid: string) => {
         _eq: postid,
       },
       user_created: {
-        _eq: "$CURRENT_USER"
-      }
+        _eq: "$CURRENT_USER",
+      },
     };
     const res = await ky.get("likes", {
       prefixUrl: `${env.NEXT_PUBLIC_API}/items`,
@@ -204,15 +212,13 @@ export const getLikesByPostID = async (postid: string) => {
       searchParams: new URLSearchParams({
         filter: JSON.stringify(filter),
       }),
-    })
+    });
 
-
-    return res.json<LikeArray>()
+    return res.json<LikeArray>();
   } catch (error) {
     console.log(error);
-
   }
-}
+};
 export const deleteLikesByPostID = async (postid: string) => {
   try {
     const filter = {
@@ -221,8 +227,8 @@ export const deleteLikesByPostID = async (postid: string) => {
       },
 
       user_created: {
-        _eq: "$CURRENT_USER"
-      }
+        _eq: "$CURRENT_USER",
+      },
     };
     const res = await ky.get("likes", {
       prefixUrl: `${env.NEXT_PUBLIC_API}/items`,
@@ -231,18 +237,66 @@ export const deleteLikesByPostID = async (postid: string) => {
       searchParams: new URLSearchParams({
         filter: JSON.stringify(filter),
       }),
-    })
+    });
 
-
-    const data = (await res.json<LikeArray>()).data[0]
+    const data = (await res.json<LikeArray>()).data[0];
 
     await ky.delete(data.id, {
       prefixUrl: `${env.NEXT_PUBLIC_API}/items/likes`,
       credentials: "include",
       mode: "cors",
-    })
+    });
   } catch (error) {
     console.log(error);
-
   }
-}
+};
+
+export const uploadPost = async (info: { caption: string }, files: File[]) => {
+  try {
+    const formData = new FormData();
+    formData.append("file", files[0]);
+
+    const postImage = await ky
+      .post("files", {
+        prefixUrl: `${env.NEXT_PUBLIC_API}`,
+        credentials: "include",
+        mode: "cors",
+        body: formData,
+      })
+      .json<FileType>();
+
+    await ky.post("posts", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/items`,
+      credentials: "include",
+      mode: "cors",
+      json: {
+        caption: info.caption,
+        post_img: postImage.data.id,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateProfileDetails = async (
+  userData: UpdateProfileSchemaType
+) => {
+  try {
+    const res = await ky.patch("me", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/users`,
+      credentials: "include",
+      mode: "cors",
+      json: {
+        email: userData.email,
+        first_name: userData.first_name,
+        last_name: userData.last_name,
+        description: userData.description,
+      },
+    });
+
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
