@@ -16,6 +16,7 @@ const index = () => {
         return response.json<PostType>();
       }
     },
+    refetchOnWindowFocus: false,
   });
 
   return (
@@ -23,14 +24,14 @@ const index = () => {
       <div className="container mx-auto max-w-screen-xl p-6">
         <div className="grid grid-cols-1 place-items-center gap-6 md:grid-cols-2 lg:grid-cols-3">
           <PostUpload />
-          {(isLoading || isFetching) && (
+          {/* {(isLoading || isFetching) && (
             <>
               <LoadingFeedCard />
               <LoadingFeedCard />
               <LoadingFeedCard />
               <LoadingFeedCard />
             </>
-          )}
+          )} */}
           {isSuccess && isFetched && (
             <>
               {data?.data.map((items) => {

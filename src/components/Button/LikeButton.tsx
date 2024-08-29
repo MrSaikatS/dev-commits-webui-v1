@@ -16,7 +16,7 @@ const LikeButton = ({ postid }: { postid: string }) => {
     if (!isLiked) {
       await postLike(postid);
       setIsLiked(true);
-      queryClient.refetchQueries({
+      queryClient.invalidateQueries({
         queryKey: ["allposts"],
       });
     }
@@ -26,7 +26,7 @@ const LikeButton = ({ postid }: { postid: string }) => {
       await deleteLikesByPostID(postid);
 
       setIsLiked(false);
-      queryClient.refetchQueries({
+      queryClient.invalidateQueries({
         queryKey: ["allposts"],
       });
     }
