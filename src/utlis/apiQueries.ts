@@ -8,6 +8,7 @@ import {
 import ky, { HTTPError } from "ky";
 import { LikeArray } from "./types/LikeType";
 import { FileType } from "./types/FileType";
+import { UserType } from "./types/UserType";
 
 export const loginUser = async (loginData: Loginschemtype) => {
   try {
@@ -38,28 +39,39 @@ export const loginUser = async (loginData: Loginschemtype) => {
 };
 export const registerUser = async (registerData: Registerschemtype) => {
   try {
-    const isRegistered = await ky.get("users", {
-      prefixUrl: `${env.NEXT_PUBLIC_API}`,
-      credentials: "include",
-      mode: "cors",
-    });
-    const res = await ky.post("register", {
-      prefixUrl: `${env.NEXT_PUBLIC_API}/users`,
-      credentials: "include",
-      mode: "cors",
-      json: {
-        first_name: registerData.first_name,
-        email: registerData.email,
-        password: registerData.password,
-        mode: "session",
-      },
-    });
+    const isRegistered = await ky
+      .get("users", {
+        prefixUrl: `${env.NEXT_PUBLIC_API}`,
+        credentials: "include",
+        mode: "cors",
+        searchParams: new URLSearchParams({
+          filter: JSON.stringify({
+            email: {
+              _eq: registerData.email,
+            },
+          }),
+        }),
+      })
+      .json<UserType>();
 
-    if (res.ok) {
-      toast.success("Login Success!");
-      return true;
-    }
+    // console.log(isRegistered.data.length);
+
+    // if (isRegistered !== null) {
+    //   return true;
+    // } else {
+    //   await ky.post("register", {
+    //     prefixUrl: `${env.NEXT_PUBLIC_API}/users`,
+    //     mode: "cors",
+    //     json: {
+    //       first_name: registerData.first_name,
+    //       email: registerData.email,
+    //       password: registerData.password,
+    //     },
+    //   });
+    // }
   } catch (error: any) {
+    console.log(error);
+
     if (error.name === "HTTPError") {
       const httpError = error as HTTPError;
       const errorJson = await httpError.response.json<any>();
@@ -296,6 +308,30 @@ export const updateProfileDetails = async (
     });
 
     return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const checkEmail = async (email: string) => {
+  try {
+    const isRegistered = await ky.get("users", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}`,
+      credentials: "include",
+      mode: "cors",
+      searchParams: new URLSearchParams({
+        filter: JSON.stringify({
+          email: {
+            _eq: email,
+          },
+        }),
+      }),
+    });
+
+    if (isRegistered !== null) {
+      return true;
+    }
+    return false;
   } catch (error) {
     console.log(error);
   }
