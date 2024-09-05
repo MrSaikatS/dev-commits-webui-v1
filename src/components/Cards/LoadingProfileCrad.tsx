@@ -6,8 +6,8 @@ import { Image } from "@nextui-org/image";
 const LoadingProfileCrad = () => {
   return (
     <>
-      <Card className="w-[350px]">
-        <CardHeader className="flex flex-row gap-5">
+      <Card className="w-[350px] grid place-items-center">
+        <CardHeader className="flex flex-row  gap-5">
           <Skeleton className="rounded-xl">
             <Image
               radius="full"

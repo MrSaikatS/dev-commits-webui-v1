@@ -2,15 +2,12 @@ import { useRouter } from "next/router";
 import Nav from "./Nav";
 
 const Header = () => {
-  const router = useRouter();
+  const pathName = useRouter().pathname;
 
-  if (
-    router.pathname === "/auth/register" ||
-    router.pathname === "/auth/signin"
-  ) {
-    return <></>;
-  } else {
+  if (pathName === "/" || pathName.startsWith("/profile")) {
     return <Nav />;
+  } else {
+    return <></>;
   }
 };
 

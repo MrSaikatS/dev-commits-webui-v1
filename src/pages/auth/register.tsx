@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, Registerschemtype } from "@/utlis/zodschema";
-import { registerUser } from "@/utlis/apiQueries";
+import { checkEmail, registerUser } from "@/utlis/apiQueries";
 import { useRouter } from "next/router";
 import { Divider } from "@nextui-org/divider";
 import Link from "next/link";
@@ -36,15 +36,16 @@ const register = () => {
   // };
 
   const onsubmit = async (fdata: Registerschemtype) => {
-    const emailRegistered = await registerUser(fdata);
+    const emailRegistered = await checkEmail(fdata.email);
     console.log(emailRegistered);
 
-    // if (emailRegistered) {
-    //   setUserEmailCheck(`${fdata.email} already in use`);
-    // } else {
-    //   push("/auth/signin");
-    //   reset();
-    // }
+    if (emailRegistered === true) {
+      setUserEmailCheck(`${fdata.email} already in use`);
+    } else {
+      await registerUser(fdata);
+      push("/auth/signin");
+      reset();
+    }
   };
 
   return (

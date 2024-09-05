@@ -3,7 +3,6 @@ import { Image } from "@nextui-org/image";
 import DeleteBtn from "../Button/DeleteBtn";
 import { PostTypeSingle } from "@/utlis/types/PostType";
 import { env } from "@/utlis/env";
-
 const UserProfileCard = ({ info }: { info: PostTypeSingle }) => {
   console.log(`${env.NEXT_PUBLIC_API}/assets/${info.post_img}`);
 
@@ -50,7 +49,7 @@ const UserProfileCard = ({ info }: { info: PostTypeSingle }) => {
           </div>
         </CardBody>
         <CardFooter className="flex items-center justify-center">
-          <DeleteBtn />
+          <DeleteBtn id={info.id} />
         </CardFooter>
       </Card>
     </>

@@ -39,36 +39,15 @@ export const loginUser = async (loginData: Loginschemtype) => {
 };
 export const registerUser = async (registerData: Registerschemtype) => {
   try {
-    const isRegistered = await ky
-      .get("users", {
-        prefixUrl: `${env.NEXT_PUBLIC_API}`,
-        credentials: "include",
-        mode: "cors",
-        searchParams: new URLSearchParams({
-          filter: JSON.stringify({
-            email: {
-              _eq: registerData.email,
-            },
-          }),
-        }),
-      })
-      .json<UserType>();
-
-    // console.log(isRegistered.data.length);
-
-    // if (isRegistered !== null) {
-    //   return true;
-    // } else {
-    //   await ky.post("register", {
-    //     prefixUrl: `${env.NEXT_PUBLIC_API}/users`,
-    //     mode: "cors",
-    //     json: {
-    //       first_name: registerData.first_name,
-    //       email: registerData.email,
-    //       password: registerData.password,
-    //     },
-    //   });
-    // }
+    await ky.post("register", {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/users`,
+      mode: "cors",
+      json: {
+        first_name: registerData.first_name,
+        email: registerData.email,
+        password: registerData.password,
+      },
+    });
   } catch (error: any) {
     console.log(error);
 
@@ -315,24 +294,42 @@ export const updateProfileDetails = async (
 
 export const checkEmail = async (email: string) => {
   try {
-    const isRegistered = await ky.get("users", {
-      prefixUrl: `${env.NEXT_PUBLIC_API}`,
-      credentials: "include",
-      mode: "cors",
-      searchParams: new URLSearchParams({
-        filter: JSON.stringify({
-          email: {
-            _eq: email,
-          },
+    const isRegistered = await ky
+      .get("users", {
+        prefixUrl: `${env.NEXT_PUBLIC_API}`,
+        credentials: "include",
+        mode: "cors",
+        searchParams: new URLSearchParams({
+          filter: JSON.stringify({
+            email: {
+              _eq: email,
+            },
+          }),
         }),
-      }),
-    });
+      })
+      .json<any>();
 
-    if (isRegistered !== null) {
+    console.log(isRegistered.data.length);
+
+    if (isRegistered.data.length != 0) {
       return true;
     }
+
+    // if (isRegistered !== null) {
+    //   return true;
+    // }
     return false;
   } catch (error) {
     console.log(error);
   }
+};
+
+export const deletePost = async (id: string) => {
+  try {
+    await ky.delete(`posts/${id}`, {
+      prefixUrl: `${env.NEXT_PUBLIC_API}/items`,
+      credentials: "include",
+      mode: "cors",
+    });
+  } catch (error) {}
 };
