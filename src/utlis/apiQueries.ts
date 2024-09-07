@@ -9,6 +9,7 @@ import ky, { HTTPError } from "ky";
 import { LikeArray } from "./types/LikeType";
 import { FileType } from "./types/FileType";
 import { UserType } from "./types/UserType";
+import { PostType } from "./types/PostType";
 
 export const loginUser = async (loginData: Loginschemtype) => {
   try {
@@ -332,4 +333,44 @@ export const deletePost = async (id: string) => {
       mode: "cors",
     });
   } catch (error) {}
+};
+
+export const publicProfile = async (id: string) => {
+  try {
+    const request = await ky
+      .get(`users/${id}`, {
+        prefixUrl: `${env.NEXT_PUBLIC_API}`,
+        credentials: "include",
+        mode: "cors",
+      })
+      .json<UserType>();
+    return request;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const publicUserPosts = async (id: string) => {
+  try {
+    const filter = {
+      user_created: {
+        _eq: id,
+      },
+    };
+
+    const request = await ky
+      .get("posts", {
+        prefixUrl: `${env.NEXT_PUBLIC_API}/items`,
+        credentials: "include",
+        mode: "cors",
+        searchParams: new URLSearchParams({
+          fields: "*.*",
+          filter: JSON.stringify(filter),
+        }),
+      })
+      .json<PostType>();
+    return request;
+  } catch (error) {
+    console.log(error);
+  }
 };

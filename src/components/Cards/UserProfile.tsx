@@ -1,42 +1,36 @@
-import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
+import { UserType } from "@/utlis/types/UserType";
+import { Card, CardBody } from "@nextui-org/card";
 
-import DeleteBtn from "../Button/DeleteBtn";
 import { Image } from "@nextui-org/image";
 
-const UserProfile = () => {
+const UserProfile = ({ info }: { info: UserType }) => {
   return (
-    <div>
-      <Card className="w-[350px]">
-        <CardHeader className="flex flex-row gap-2">
-          <Image
-            radius="full"
-            src={"/girl.png"}
-            width={60}
-            height={60}
-            alt="Profile image"
-          />
-          <div className="flex flex-col justify-center items-start">
-            <div className="font-bold text-sm"></div>
-            <div className="font-light"></div>
-          </div>
-        </CardHeader>
-        <CardBody className="flex items-center">
-          <Image
-            className="rounded-3xl aspect-square"
-            src={"/girl.png"}
-            width={300}
-            height={200}
-            alt="Profile image"
-          />
-          <div className="text-center mt-3">
-            <span className="font-extralight">{}</span>
-          </div>
-        </CardBody>
-        <CardFooter className="flex items-center justify-center">
-          <DeleteBtn />
-        </CardFooter>
-      </Card>
-    </div>
+    <>
+      <div className="grid place-content-center mt-3">
+        <Card className="w-[380px] sm:w-[500px]">
+          <CardBody className="flex flex-col justify-center items-center space-y-1">
+            <Image
+              src={`${process.env.NEXT_PUBLIC_API}/assets/${info.data.avatar} || "/girl.png"`}
+              className="cursor-pointer object-cover w-40 h-40 "
+              radius="full"
+              alt="Profile image"
+            />
+            <div className="flex flex-col items-center">
+              <div className="font-semibold">
+                First Name : <span>{info.data.first_name}</span>
+              </div>
+              <div className="font-semibold">
+                Last Name :{info.data.last_name}
+              </div>
+              <div className="font-semibold">Email :{info.data.email}</div>
+              <div className="font-semibold text-center">
+                {`${info.data.email} ` || "No Bio"}
+              </div>
+            </div>
+          </CardBody>
+        </Card>
+      </div>
+    </>
   );
 };
 

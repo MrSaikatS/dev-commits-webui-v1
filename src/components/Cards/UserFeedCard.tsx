@@ -2,6 +2,7 @@ import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import LikeButton from "../Button/LikeButton";
 import { PostTypeSingle } from "@/utlis/types/PostType";
+import Link from "next/link";
 
 const UserFeedCard = ({ info }: { info: PostTypeSingle }) => {
   console.log(info);
@@ -22,27 +23,34 @@ const UserFeedCard = ({ info }: { info: PostTypeSingle }) => {
     <>
       <Card className="w-[350px]">
         <CardHeader className="flex flex-row gap-2">
-          {info.user_created.avatar !== null ? (
-            <Image
-              src={`${process.env.NEXT_PUBLIC_API}/assets/${info?.user_created.avatar}`}
-              className="cursor-pointer object-cover w-12 h-12 "
-              radius="full"
-              alt="Profile image"
-            />
-          ) : (
-            <Image
-              src={`"/girl.png"`}
-              className="cursor-pointer object-cover w-12 h-12 "
-              radius="full"
-              alt="Profile image"
-            />
-          )}
+          <div>
+            <Link
+              href={`profile/${info.user_created.id}`}
+              className="flex  justify-center items-center gap-2"
+            >
+              {info.user_created.avatar !== null ? (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_API}/assets/${info?.user_created.avatar}`}
+                  className="cursor-pointer object-cover w-12 h-12 "
+                  radius="full"
+                  alt="Profile image"
+                />
+              ) : (
+                <Image
+                  src={`"/girl.png"`}
+                  className="cursor-pointer object-cover w-12 h-12 "
+                  radius="full"
+                  alt="Profile image"
+                />
+              )}
 
-          <div className="flex flex-col justify-center items-start">
-            <div className="font-bold text-sm">
-              {info.user_created.first_name} {info.user_created.last_name}
-            </div>
-            <div className="font-light">{posting_date}</div>
+              <div className="flex flex-col ">
+                <div className="font-bold text-sm">
+                  {info.user_created.first_name} {info.user_created.last_name}
+                </div>
+                <div className="font-light">{posting_date}</div>
+              </div>
+            </Link>
           </div>
         </CardHeader>
         <CardBody className="flex items-center">
