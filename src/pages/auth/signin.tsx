@@ -8,8 +8,13 @@ import { loginUser } from "@/utlis/apiQueries";
 import { useRouter } from "next/router";
 import { Divider } from "@nextui-org/divider";
 import Link from "next/link";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 const signin = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
   const {
     register,
     handleSubmit,
@@ -60,6 +65,19 @@ const signin = () => {
               placeholder="Enter the Password"
               isInvalid={errors.email ? true : false}
               errorMessage={errors.email?.message}
+              type={isVisible ? "text" : "password"}
+              endContent={
+                <>
+                  <button
+                    className="focus:outline-none"
+                    type="button"
+                    onClick={toggleVisibility}
+                    aria-label="toggle password visibility"
+                  >
+                    {isVisible ? <Eye /> : <EyeOff />}
+                  </button>
+                </>
+              }
             />
             <Button
               fullWidth

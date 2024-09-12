@@ -73,15 +73,6 @@ const register = () => {
                 isInvalid={errors.email ? true : false}
                 errorMessage={errors.email?.message}
               />
-              {/* <Button
-                type="submit"
-                onPress={handleSubmit(emailCheckingfn)}
-                variant="flat"
-                color="primary"
-                isIconOnly
-              >
-                <Check />
-              </Button> */}
             </div>
 
             <Input

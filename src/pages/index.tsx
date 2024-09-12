@@ -1,6 +1,5 @@
 import PostUpload from "@/components/Button/PostUpload";
 
-import LoadingFeedCard from "@/components/Cards/LoadingFeedCard";
 import UserFeedCard from "@/components/Cards/UserFeedCard";
 import { getPosts } from "@/utlis/apiQueries";
 import { PostType } from "@/utlis/types/PostType";

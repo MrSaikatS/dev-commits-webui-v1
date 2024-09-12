@@ -10,9 +10,12 @@ const public_id = () => {
   const id = query.public_id as string | undefined;
 
   console.log(id);
+  if (id === undefined) {
+    return;
+  }
 
   const { data, isLoading, isFetched, isSuccess } = useQuery({
-    queryKey: ["publicUser"],
+    queryKey: ["publicUser", id],
     queryFn: async () => {
       const res = await publicProfile(id);
 
@@ -22,8 +25,6 @@ const public_id = () => {
     },
 
     refetchOnWindowFocus: false,
-
-    enabled: !!id,
   });
 
   console.log(data);

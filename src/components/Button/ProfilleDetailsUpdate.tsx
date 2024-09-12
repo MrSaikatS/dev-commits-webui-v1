@@ -1,4 +1,5 @@
 import { updateProfileDetails } from "@/utlis/apiQueries";
+import { UserType } from "@/utlis/types/UserType";
 import {
   updateProfileSchema,
   UpdateProfileSchemaType,
@@ -10,9 +11,8 @@ import { Input } from "@nextui-org/input";
 import { Modal, ModalContent, useDisclosure } from "@nextui-org/modal";
 import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 
-const ProfilleDetailsUpdate = () => {
+const ProfilleDetailsUpdate = ({ authdata }: { authdata: UserType }) => {
   const {
     register,
     handleSubmit,
@@ -54,6 +54,7 @@ const ProfilleDetailsUpdate = () => {
                       variant="bordered"
                       color="primary"
                       radius="md"
+                      defaultValue={authdata.data.first_name}
                       {...register("first_name")}
                       isInvalid={!!errors.first_name?.message}
                       errorMessage={errors.first_name?.message}
@@ -63,6 +64,7 @@ const ProfilleDetailsUpdate = () => {
                       variant="bordered"
                       color="primary"
                       radius="md"
+                      defaultValue={authdata.data.last_name}
                       {...register("last_name")}
                       isInvalid={!!errors.last_name?.message}
                       errorMessage={errors.last_name?.message}
@@ -73,6 +75,7 @@ const ProfilleDetailsUpdate = () => {
                       variant="bordered"
                       color="primary"
                       radius="md"
+                      defaultValue={authdata.data.email}
                       {...register("email")}
                       isInvalid={!!errors.email?.message}
                       errorMessage={errors.email?.message}
@@ -81,6 +84,7 @@ const ProfilleDetailsUpdate = () => {
                       label="Enter Your Description"
                       variant="bordered"
                       color="primary"
+                      defaultValue={authdata.data.description}
                       radius="md"
                       {...register("description")}
                       isInvalid={!!errors.description?.message}

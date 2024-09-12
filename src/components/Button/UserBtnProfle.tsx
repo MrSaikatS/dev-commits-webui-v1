@@ -47,12 +47,23 @@ const UserBtnProfle = () => {
           <div className="text-pretty font-medium">{data?.data.first_name}</div>
           <Link href={"/profile/privateprofile"} className="rounded-full">
             <div className="">
-              <Image
-                className="cursor-pointer object-cover w-12 h-12 "
-                radius="full"
-                src={`${process.env.NEXT_PUBLIC_API}/assets/${data?.data.avatar} || "/girl.png"`}
-                alt="Profile image"
-              />
+              {data?.data.avatar !== null ? (
+                <Image
+                  className="cursor-pointer object-cover w-12 h-12 "
+                  radius="full"
+                  src={`${process.env.NEXT_PUBLIC_API}/assets/${data?.data.avatar}`}
+                  alt="Profile image"
+                />
+              ) : (
+                <Image
+                  className="cursor-pointer object-cover w-12 h-12 "
+                  radius="full"
+                  src={
+                    "https://citindia.in/wp-content/uploads/2022/03/Saikat.png.webp"
+                  }
+                  alt="Profile image"
+                />
+              )}
             </div>
           </Link>
         </div>

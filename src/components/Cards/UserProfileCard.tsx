@@ -22,13 +22,22 @@ const UserProfileCard = ({ info }: { info: PostTypeSingle }) => {
     <>
       <Card className="w-[350px]">
         <CardHeader className="flex flex-row gap-2">
-          <Image
-            radius="full"
-            src={`${env.NEXT_PUBLIC_API}/assets/${info.user_created.avatar} || "/girl.png"`}
-            width={60}
-            height={60}
-            alt="Profile image"
-          />
+          {info.user_created.avatar !== null ? (
+            <Image
+              className="w-12 h-12 rounded-full"
+              src={`${env.NEXT_PUBLIC_API}/assets/${info.user_created.avatar}`}
+              alt="Profile image"
+            />
+          ) : (
+            <Image
+              className="w-12 h-12 rounded-full"
+              src={
+                "https://citindia.in/wp-content/uploads/2022/03/Saikat.png.webp"
+              }
+              alt="Profile image"
+            />
+          )}
+
           <div className="flex flex-col justify-center items-start">
             <div className="font-bold text-sm">
               {info.user_created.first_name} {info.user_created.last_name}

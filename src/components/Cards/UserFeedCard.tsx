@@ -37,7 +37,9 @@ const UserFeedCard = ({ info }: { info: PostTypeSingle }) => {
                 />
               ) : (
                 <Image
-                  src={`"/girl.png"`}
+                  src={
+                    "https://citindia.in/wp-content/uploads/2022/03/Saikat.png.webp"
+                  }
                   className="cursor-pointer object-cover w-12 h-12 "
                   radius="full"
                   alt="Profile image"

@@ -36,13 +36,23 @@ const PublicUserPostCard = ({ detail }: { detail: UserType }) => {
         return (
           <Card className="w-[350px]" key={items.id}>
             <CardHeader className="flex flex-row gap-2">
-              <Image
-                radius="full"
-                src={`${process.env.NEXT_PUBLIC_API}/assets/${items?.user_created.avatar}`}
-                width={60}
-                height={60}
-                alt="Profile image"
-              />
+              {items.user_created.avatar !== null ? (
+                <Image
+                  className="w-12 h-12 rounded-full"
+                  src={`${process.env.NEXT_PUBLIC_API}/assets/${items?.user_created.avatar}`}
+                  alt="Profile image"
+                />
+              ) : (
+                <Image
+                  src={
+                    "https://citindia.in/wp-content/uploads/2022/03/Saikat.png.webp"
+                  }
+                  className="cursor-pointer object-cover w-12 h-12 "
+                  radius="full"
+                  alt="Profile image"
+                />
+              )}
+
               <div className="flex flex-col justify-center items-start">
                 <div className="font-bold text-sm">
                   {items.user_created.first_name}

@@ -60,13 +60,21 @@ const ProfilePicUpdate = ({ id }: { id: string }) => {
                 {!pickFile && (
                   <>
                     <button onClick={openFilePicker}>
-                      <Image
-                        radius="full"
-                        src={`${process.env.NEXT_PUBLIC_API}/assets/${id}`}
-                        width={200}
-                        height={200}
-                        alt="Profile image"
-                      />
+                      {id === null ? (
+                        <Image
+                          className="w-40 h-40 rounded-full object-cover"
+                          src={
+                            "https://citindia.in/wp-content/uploads/2022/03/Saikat.png.webp"
+                          }
+                          alt="Profile image"
+                        />
+                      ) : (
+                        <Image
+                          className="w-40 h-40 rounded-full object-cover"
+                          src={`${process.env.NEXT_PUBLIC_API}/assets/${id}`}
+                          alt="Profile image"
+                        />
+                      )}
                     </button>
                   </>
                 )}

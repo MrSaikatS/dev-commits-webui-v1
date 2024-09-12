@@ -9,12 +9,24 @@ const UserProfile = ({ info }: { info: UserType }) => {
       <div className="grid place-content-center mt-3">
         <Card className="w-[380px] sm:w-[500px]">
           <CardBody className="flex flex-col justify-center items-center space-y-1">
-            <Image
-              src={`${process.env.NEXT_PUBLIC_API}/assets/${info.data.avatar} || "/girl.png"`}
-              className="cursor-pointer object-cover w-40 h-40 "
-              radius="full"
-              alt="Profile image"
-            />
+            {info.data.avatar != null ? (
+              <Image
+                src={`${process.env.NEXT_PUBLIC_API}/assets/${info.data.avatar}`}
+                className="cursor-pointer object-cover w-40 h-40 "
+                radius="full"
+                alt="Profile image"
+              />
+            ) : (
+              <Image
+                src={
+                  "https://citindia.in/wp-content/uploads/2022/03/Saikat.png.webp"
+                }
+                className="cursor-pointer object-cover w-40 h-40 "
+                radius="full"
+                alt="Profile image"
+              />
+            )}
+
             <div className="flex flex-col items-center">
               <div className="font-semibold">
                 First Name : <span>{info.data.first_name}</span>

@@ -25,18 +25,30 @@ const UserNav = () => {
     );
   }
 
-  if (isFetched && isSuccess) {
+  if (isFetched && isSuccess && data) {
     return (
       <>
         <div className="grid place-content-center mt-3">
           <Card className="w-[380px] sm:w-[500px]">
             <CardBody className="flex flex-col justify-center items-center space-y-1">
-              <Image
-                src={`${process.env.NEXT_PUBLIC_API}/assets/${data?.data.avatar} || "/girl.png"`}
-                className="cursor-pointer object-cover w-40 h-40 "
-                radius="full"
-                alt="Profile image"
-              />
+              {data.data.avatar !== null ? (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_API}/assets/${data?.data.avatar}`}
+                  className="cursor-pointer object-cover w-40 h-40 "
+                  radius="full"
+                  alt="Profile image"
+                />
+              ) : (
+                <Image
+                  src={
+                    "https://citindia.in/wp-content/uploads/2022/03/Saikat.png.webp"
+                  }
+                  className="cursor-pointer object-cover w-40 h-40 "
+                  radius="full"
+                  alt="Profile image"
+                />
+              )}
+
               <div className="flex flex-col items-center">
                 <div className="font-semibold">
                   First Name : <span>{data?.data.first_name}</span>
@@ -52,7 +64,7 @@ const UserNav = () => {
 
               <div className="space-x-4 flex justify-center items-center">
                 <ProfilePicUpdate id={data?.data.avatar} />
-                <ProfilleDetailsUpdate />
+                <ProfilleDetailsUpdate authdata={data} />
               </div>
             </CardBody>
           </Card>
