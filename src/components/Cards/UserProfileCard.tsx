@@ -21,28 +21,33 @@ const UserProfileCard = ({ info }: { info: PostTypeSingle }) => {
   return (
     <>
       <Card className="w-[350px]">
-        <CardHeader className="flex flex-row gap-2">
-          {info.user_created.avatar !== null ? (
-            <Image
-              className="w-12 h-12 rounded-full"
-              src={`${env.NEXT_PUBLIC_API}/assets/${info.user_created.avatar}`}
-              alt="Profile image"
-            />
-          ) : (
-            <Image
-              className="w-12 h-12 rounded-full"
-              src={
-                "https://citindia.in/wp-content/uploads/2022/03/Saikat.png.webp"
-              }
-              alt="Profile image"
-            />
-          )}
+        <CardHeader className="flex justify-between">
+          <div className="ml-3 flex flex-row gap-2">
+            {info.user_created.avatar !== null ? (
+              <Image
+                className="w-12 h-12 rounded-full"
+                src={`${env.NEXT_PUBLIC_API}/assets/${info.user_created.avatar}`}
+                alt="Profile image"
+              />
+            ) : (
+              <Image
+                className="w-12 h-12 rounded-full"
+                src={
+                  "https://citindia.in/wp-content/uploads/2022/03/Saikat.png.webp"
+                }
+                alt="Profile image"
+              />
+            )}
 
-          <div className="flex flex-col justify-center items-start">
-            <div className="font-bold text-sm">
-              {info.user_created.first_name} {info.user_created.last_name}
+            <div className="flex flex-col justify-center items-start">
+              <div className="font-bold text-sm">
+                {info.user_created.first_name} {info.user_created.last_name}
+              </div>
+              <div className="font-light">{posting_date}</div>
             </div>
-            <div className="font-light">{posting_date}</div>
+          </div>
+          <div className="mr-3">
+            <DeleteBtn id={info.id} />
           </div>
         </CardHeader>
         <CardBody className="flex items-center">
@@ -53,13 +58,10 @@ const UserProfileCard = ({ info }: { info: PostTypeSingle }) => {
             height={200}
             alt="Profile image"
           />
-          <div className="text-center mt-3">
-            <span className="font-extralight">{info.caption}</span>
+          <div className="mt-3">
+            <span className="">{info.caption}</span>
           </div>
         </CardBody>
-        <CardFooter className="flex items-center justify-center">
-          <DeleteBtn id={info.id} />
-        </CardFooter>
       </Card>
     </>
   );

@@ -15,7 +15,7 @@ export function middleware(request: NextRequest) {
       console.log(`--------Token--------`);
     } catch (error) {
       console.log(error);
-      return NextResponse.redirect(new URL("/auth/signin", request.nextUrl));
+      return NextResponse.redirect(new URL("auth/signin", request.nextUrl));
     }
   } else {
     return NextResponse.redirect(new URL("/", request.nextUrl));

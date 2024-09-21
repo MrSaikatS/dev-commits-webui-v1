@@ -10,8 +10,6 @@ import {
 import Link from "next/link";
 import Darkmode from "./Button/Darkmode";
 import Logoutbtn from "./Button/Logoutbtn";
-import { Input } from "@nextui-org/input";
-import { Search } from "lucide-react";
 import UserBtnProfle from "./Button/UserBtnProfle";
 
 const Nav = () => {
@@ -22,7 +20,7 @@ const Nav = () => {
           <Link href={"/"}>DEV Commits</Link>
         </NavbarBrand>
         <NavbarBrand className="text-2xl font-semibold">
-          <Input
+          {/* <Input
             className="lg:w-[500px] w-40"
             placeholder="Search user"
             endContent={
@@ -32,7 +30,7 @@ const Nav = () => {
                 </button>
               </>
             }
-          />
+          /> */}
         </NavbarBrand>
 
         <NavbarContent justify="end" className="sm:hidden">

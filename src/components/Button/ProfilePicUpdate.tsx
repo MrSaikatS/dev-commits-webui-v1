@@ -10,6 +10,7 @@ import {
 } from "@nextui-org/modal";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { toast } from "sonner";
 import { useFilePicker } from "use-file-picker";
 
 const ProfilePicUpdate = ({ id }: { id: string }) => {
@@ -37,6 +38,7 @@ const ProfilePicUpdate = ({ id }: { id: string }) => {
   const imageUpload = async () => {
     const abc = await updateProfileImage(plainFiles);
     console.log(abc);
+    toast.success("Profile Pic Updated.");
 
     queryClient.refetchQueries({ queryKey: ["getMe"] });
   };

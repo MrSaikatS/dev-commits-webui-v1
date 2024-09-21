@@ -9,6 +9,7 @@ import {
   useDisclosure,
 } from "@nextui-org/modal";
 import { useQueryClient } from "@tanstack/react-query";
+import { Trash } from "lucide-react";
 import { useState } from "react";
 
 const DeleteBtn = ({ id }: { id: string }) => {
@@ -29,8 +30,8 @@ const DeleteBtn = ({ id }: { id: string }) => {
   return (
     <>
       <div className="">
-        <Button color="danger" onPress={onOpen}>
-          Delete Post
+        <Button color="danger" onPress={onOpen} isIconOnly variant="light">
+          <Trash />
         </Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
           <ModalContent>

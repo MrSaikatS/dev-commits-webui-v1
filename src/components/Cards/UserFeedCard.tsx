@@ -26,7 +26,7 @@ const UserFeedCard = ({ info }: { info: PostTypeSingle }) => {
           <div>
             <Link
               href={`profile/${info.user_created.id}`}
-              className="flex  justify-center items-center gap-2"
+              className="flex justify-center items-center gap-2"
             >
               {info.user_created.avatar !== null ? (
                 <Image

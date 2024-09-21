@@ -1,18 +1,29 @@
+import { darkAtom } from "@/utlis/atoms/darkAtom";
 import { Button } from "@nextui-org/button";
-import { Moon, Sun } from "lucide-react";
-
-import { useTheme } from "next-themes";
+import { useAtom } from "jotai/react";
+import { MoonIcon, SunIcon } from "lucide-react";
+import { useEffect } from "react";
 
 const Darkmode = () => {
-  const { setTheme } = useTheme();
+  const [darkMode, setDarkMode] = useAtom(darkAtom);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
   return (
     <>
       <div className="space-x-2">
-        <Button isIconOnly onClick={() => setTheme("light")}>
-          <Sun size={20} />
-        </Button>
-        <Button isIconOnly onClick={() => setTheme("dark")}>
-          <Moon size={20} />
+        <Button
+          className=""
+          isIconOnly
+          size="md"
+          onPress={() => setDarkMode(!darkMode)}
+        >
+          {darkMode ? <MoonIcon /> : <SunIcon />}
         </Button>
       </div>
     </>
